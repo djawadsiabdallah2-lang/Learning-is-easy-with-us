@@ -970,432 +970,822 @@ footer strong{
 
 
     
+```html
 <!-- =====================================================
-     📐 قسم فيديوهات الرياضيات
+     🎥 قسم الدروس بالفيديو
+     نظام المواد القابلة للفتح والإغلاق
 ===================================================== -->
 
-<section class="card video-section" id="math-videos-section">
+<style>
+
+/* ===== بطاقات المواد ===== */
+
+.subject-video-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+/* بطاقة المادة */
+
+.subject-video-box{
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    background:rgba(255,255,255,.025);
+    transition:.3s;
+}
+
+.subject-video-box:hover{
+    border-color:rgba(25,169,255,.35);
+}
+
+/* زر المادة */
+
+.subject-video-button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:var(--text);
+    padding:22px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    cursor:pointer;
+    text-align:right;
+    transition:.25s;
+}
+
+.subject-video-button:hover{
+    background:rgba(25,169,255,.07);
+}
+
+.subject-icon{
+    width:58px;
+    height:58px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    border-radius:16px;
+    background:rgba(25,169,255,.1);
+    font-size:30px;
+}
+
+.subject-name{
+    flex:1;
+}
+
+.subject-name strong{
+    display:block;
+    font-size:19px;
+    margin-bottom:5px;
+}
+
+.subject-name span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.subject-arrow{
+    font-size:22px;
+    color:var(--blue);
+    transition:.3s;
+}
+
+.subject-video-box.open .subject-arrow{
+    transform:rotate(180deg);
+}
+
+/* محتوى الدروس */
+
+.subject-video-content{
+    display:none;
+    padding:0 18px 20px;
+    border-top:1px solid var(--border);
+}
+
+.subject-video-box.open .subject-video-content{
+    display:block;
+    animation:videoOpen .3s ease;
+}
+
+@keyframes videoOpen{
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* شبكة الفيديوهات */
+
+.subject-video-content .video-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    padding-top:18px;
+}
+
+/* الفيديو */
+
+.subject-video-content .video-card{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:rgba(0,0,0,.13);
+    transition:.3s;
+}
+
+.subject-video-content .video-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(25,169,255,.35);
+}
+
+.subject-video-content .video-frame{
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+}
+
+.subject-video-content .video-frame iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+}
+
+.subject-video-content .video-info{
+    padding:15px;
+}
+
+.subject-video-content .video-number{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:rgba(25,169,255,.1);
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.subject-video-content .video-title{
+    font-size:16px;
+    font-weight:900;
+    line-height:1.6;
+    margin-bottom:5px;
+}
+
+.subject-video-content .video-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* الهاتف */
+
+@media(max-width:800px){
+
+    .subject-video-list{
+        grid-template-columns:1fr;
+    }
+
+    .subject-video-content .video-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+
+<section class="card video-section" id="videos-section">
 
     <div class="card-title">
 
-        <div class="title-icon">📐</div>
+        <div class="title-icon">🎥</div>
 
         <div>
-            <h2>فيديوهات الرياضيات</h2>
+            <h2>دروس الفيديو</h2>
+
             <div class="card-subtitle">
-                شاهد دروس الرياضيات مباشرة من الموقع
+                اختر المادة لمشاهدة جميع دروسها
             </div>
         </div>
 
     </div>
 
-    <div class="video-grid">
 
-        <!-- الرياضيات - الدرس 1 -->
-        <div class="video-card">
+    <div class="subject-video-list">
 
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/SiwANq5js_w"
-                    title="رياضيات - الدرس 1"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
 
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 1</span>
 
-                <div class="video-title">
-                    الرياضيات — الدرس 1
+        
+        <!-- =================================================
+             📐 الرياضيات
+        ================================================== -->
+
+        <div class="subject-video-box">
+
+            <button
+                class="subject-video-button"
+                onclick="toggleSubjectVideos(this)"
+            >
+
+                <div class="subject-icon">
+                    📐
                 </div>
 
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
+                <div class="subject-name">
+
+                    <strong>الرياضيات</strong>
+
+                    <span>
+                        9 دروس فيديو
+                    </span>
+
                 </div>
+
+                <div class="subject-arrow">
+                    ▼
+                </div>
+
+            </button>
+
+
+            <div class="subject-video-content">
+
+                <div class="video-grid">
+
+
+                    <!-- الدرس 1 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/SiwANq5js_w"
+                                title="رياضيات - الدرس 1"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 1
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 1
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 2 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/ekZHOZ2nZFg"
+                                title="رياضيات - الدرس 2"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 2
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 2
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 3 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/ye_iS47a7yk"
+                                title="رياضيات - الدرس 3"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 3
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 3
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 4 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/rs2yKtdd8qc"
+                                title="رياضيات - الدرس 4"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 4
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 4
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 5 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/PKJ1jMhHMzo"
+                                title="رياضيات - الدرس 5"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 5
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 5
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 6 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/7Xns4feLSiI"
+                                title="رياضيات - الدرس 6"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 6
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 6
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 7 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/nXDTb6bZiTo"
+                                title="رياضيات - الدرس 7"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 7
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 7
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 8 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/MYkLzBXJ-5o"
+                                title="رياضيات - الدرس 8"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 8
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 8
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الدرس 9 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/xRYmShGz6f4"
+                                title="رياضيات - الدرس 9"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                📐 الدرس 9
+                            </span>
+
+                            <div class="video-title">
+                                الرياضيات — الدرس 9
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الرياضيات للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <!-- الرياضيات - الدرس 2 -->
-        <div class="video-card">
 
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/ekZHOZ2nZFg"
-                    title="رياضيات - الدرس 2"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
+        <!-- =================================================
+             ⚡ الفيزياء
+        ================================================== -->
 
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 2</span>
+        <div class="subject-video-box">
 
-                <div class="video-title">
-                    الرياضيات — الدرس 2
+            <button
+                class="subject-video-button"
+                onclick="toggleSubjectVideos(this)"
+            >
+
+                <div class="subject-icon">
+                    ⚡
                 </div>
 
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
+                <div class="subject-name">
+
+                    <strong>الفيزياء</strong>
+
+                    <span>
+                        5 دروس فيديو
+                    </span>
+
                 </div>
+
+                <div class="subject-arrow">
+                    ▼
+                </div>
+
+            </button>
+
+
+            <div class="subject-video-content">
+
+                <div class="video-grid">
+
+
+                    <!-- الفيزياء 1 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/Zs_HNZW_ECM"
+                                title="فيزياء - الدرس 1"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                ⚡ الدرس 1
+                            </span>
+
+                            <div class="video-title">
+                                الفيزياء — الدرس 1
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الفيزياء للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الفيزياء 2 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/dXhSLKisUbU"
+                                title="فيزياء - الدرس 2"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                ⚡ الدرس 2
+                            </span>
+
+                            <div class="video-title">
+                                الفيزياء — الدرس 2
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الفيزياء للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الفيزياء 3 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/-lFlnPc2LCo"
+                                title="فيزياء - الدرس 3"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                ⚡ الدرس 3
+                            </span>
+
+                            <div class="video-title">
+                                الفيزياء — الدرس 3
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الفيزياء للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الفيزياء 4 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/Pd6VD3_VgdE"
+                                title="فيزياء - الدرس 4"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                ⚡ الدرس 4
+                            </span>
+
+                            <div class="video-title">
+                                الفيزياء — الدرس 4
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الفيزياء للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الفيزياء 5 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/uZ1o5viWAHs"
+                                title="فيزياء - الدرس 5"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                ⚡ الدرس 5
+                            </span>
+
+                            <div class="video-title">
+                                الفيزياء — الدرس 5
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس الفيزياء للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
             </div>
 
         </div>
 
-
-        <!-- الرياضيات - الدرس 3 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/ye_iS47a7yk"
-                    title="رياضيات - الدرس 3"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 3</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 3
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الرياضيات - الدرس 4 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/rs2yKtdd8qc"
-                    title="رياضيات - الدرس 4"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 4</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 4
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الرياضيات - الدرس 5 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/PKJ1jMhHMzo"
-                    title="رياضيات - الدرس 5"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 5</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 5
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الرياضيات - الدرس 6 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/7Xns4feLSiI"
-                    title="رياضيات - الدرس 6"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 6</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 6
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الرياضيات - الدرس 7 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/nXDTb6bZiTo"
-                    title="رياضيات - الدرس 7"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 7</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 7
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الرياضيات - الدرس 8 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/MYkLzBXJ-5o"
-                    title="رياضيات - الدرس 8"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 8</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 8
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الرياضيات - الدرس 9 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/xRYmShGz6f4"
-                    title="رياضيات - الدرس 9"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">📐 الدرس 9</span>
-
-                <div class="video-title">
-                    الرياضيات — الدرس 9
-                </div>
-
-                <div class="video-description">
-                    شرح درس الرياضيات للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     ⚡ قسم فيديوهات الفيزياء
-===================================================== -->
+<script>
 
-<section class="card video-section" id="physics-videos-section">
+/* =====================================================
+   فتح وإغلاق دروس المادة
+===================================================== */
 
-    <div class="card-title">
+function toggleSubjectVideos(button){
 
-        <div class="title-icon">⚡</div>
+    const box = button.closest(".subject-video-box");
 
-        <div>
-            <h2>فيديوهات الفيزياء</h2>
-            <div class="card-subtitle">
-                شاهد دروس الفيزياء مباشرة من الموقع
-            </div>
-        </div>
+    const allBoxes = document.querySelectorAll(".subject-video-box");
 
-    </div>
+    /* إغلاق المواد الأخرى */
 
-    <div class="video-grid">
+    allBoxes.forEach(item => {
 
-        <!-- الفيزياء - الدرس 1 -->
-        <div class="video-card">
+        if(item !== box){
+            item.classList.remove("open");
+        }
 
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/Zs_HNZW_ECM"
-                    title="فيزياء - الدرس 1"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
+    });
 
-            <div class="video-info">
-                <span class="video-number">⚡ الدرس 1</span>
+    /* فتح / إغلاق المادة التي ضغط عليها */
 
-                <div class="video-title">
-                    الفيزياء — الدرس 1
-                </div>
+    box.classList.toggle("open");
 
-                <div class="video-description">
-                    شرح درس الفيزياء للسنة الأولى ثانوي.
-                </div>
-            </div>
+}
 
-        </div>
+</script>
 
-
-        <!-- الفيزياء - الدرس 2 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/dXhSLKisUbU"
-                    title="فيزياء - الدرس 2"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">⚡ الدرس 2</span>
-
-                <div class="video-title">
-                    الفيزياء — الدرس 2
-                </div>
-
-                <div class="video-description">
-                    شرح درس الفيزياء للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الفيزياء - الدرس 3 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/-lFlnPc2LCo"
-                    title="فيزياء - الدرس 3"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">⚡ الدرس 3</span>
-
-                <div class="video-title">
-                    الفيزياء — الدرس 3
-                </div>
-
-                <div class="video-description">
-                    شرح درس الفيزياء للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الفيزياء - الدرس 4 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/Pd6VD3_VgdE"
-                    title="فيزياء - الدرس 4"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">⚡ الدرس 4</span>
-
-                <div class="video-title">
-                    الفيزياء — الدرس 4
-                </div>
-
-                <div class="video-description">
-                    شرح درس الفيزياء للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- الفيزياء - الدرس 5 -->
-        <div class="video-card">
-
-            <div class="video-frame">
-                <iframe
-                    src="https://www.youtube.com/embed/uZ1o5viWAHs"
-                    title="فيزياء - الدرس 5"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <div class="video-info">
-                <span class="video-number">⚡ الدرس 5</span>
-
-                <div class="video-title">
-                    الفيزياء — الدرس 5
-                </div>
-
-                <div class="video-description">
-                    شرح درس الفيزياء للسنة الأولى ثانوي.
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 
 
