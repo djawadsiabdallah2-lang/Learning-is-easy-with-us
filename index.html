@@ -12,21 +12,44 @@
 <meta name="robots" content="index, follow">
 
 <style>
+
 :root{
     --bg:#07111f;
     --bg2:#0b1728;
     --card:rgba(15,31,51,.82);
     --card2:#102239;
+
     --text:#f8fbff;
-    --muted:#9eb0c5;
+    --muted:#9fb1c7;
+
     --blue:#19a9ff;
-    --blue2:#006eff;
     --cyan:#35d6ff;
     --green:#20d69a;
     --red:#ff5268;
     --orange:#ffae35;
+    --purple:#9b7cff;
+
     --border:rgba(255,255,255,.09);
-    --shadow:0 20px 55px rgba(0,0,0,.28);
+
+    --shadow:
+        0 18px 45px rgba(0,0,0,.35);
+}
+
+body.light{
+
+    --bg:#eef6ff;
+    --bg2:#ffffff;
+
+    --card:rgba(255,255,255,.9);
+    --card2:#f4f8fc;
+
+    --text:#142033;
+    --muted:#64748b;
+
+    --border:rgba(15,23,42,.1);
+
+    --shadow:
+        0 18px 40px rgba(30,60,90,.12);
 }
 
 *{
@@ -40,1785 +63,2615 @@ html{
 }
 
 body{
-    min-height:100vh;
-    font-family:Arial,"Tahoma",sans-serif;
-    color:var(--text);
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        Arial,
+        sans-serif;
+
     background:
-        radial-gradient(circle at 10% 10%,rgba(0,168,255,.14),transparent 28%),
-        radial-gradient(circle at 90% 20%,rgba(0,110,255,.12),transparent 25%),
-        linear-gradient(135deg,var(--bg),var(--bg2));
-    transition:.3s;
+        radial-gradient(
+            circle at top right,
+            rgba(25,169,255,.13),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(32,214,154,.08),
+            transparent 28%
+        ),
+        var(--bg);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    line-height:1.7;
 }
 
-body.light{
-    --bg:#eef6fc;
-    --bg2:#dfeefa;
-    --card:rgba(255,255,255,.9);
-    --card2:#fff;
-    --text:#14202d;
-    --muted:#607080;
-    --border:rgba(0,0,0,.08);
-    --shadow:0 15px 40px rgba(25,80,120,.12);
+body.light header{
+
+    background:
+        rgba(255,255,255,.82);
 }
 
-body:before{
-    content:"";
-    position:fixed;
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    background:rgba(0,168,255,.07);
-    filter:blur(80px);
-    top:30%;
-    right:-150px;
-    pointer-events:none;
-    z-index:-1;
+a{
+    color:inherit;
+    text-decoration:none;
 }
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   الحاوية
+========================================================= */
+
+.container{
+
+    width:min(
+        1180px,
+        92%
+    );
+
+    margin:auto;
+}
+
+
+/* =========================================================
+   البطاقات
+========================================================= */
+
+.card{
+
+    background:var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+
+/* =========================================================
+   شريط التنقل
+========================================================= */
 
 nav{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    width:100%;
-    padding:14px 5%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    background:rgba(6,17,30,.78);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--border);
-}
 
-body.light nav{
-    background:rgba(255,255,255,.8);
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    min-height:74px;
+
+    padding:
+        10px
+        4%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    background:
+        rgba(7,17,31,.78);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 }
 
 .logo{
-    font-size:21px;
-    font-weight:900;
-    color:var(--text);
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
 
-.logo span{
-    color:var(--blue);
+    font-size:1.25rem;
+
+    font-weight:900;
+
+    color:var(--cyan);
+
+    white-space:nowrap;
 }
 
 .nav-links{
+
     display:flex;
-    gap:8px;
+
     align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
     flex-wrap:wrap;
 }
 
 .nav-links a{
-    text-decoration:none;
+
+    padding:
+        9px
+        13px;
+
+    border-radius:12px;
+
     color:var(--muted);
-    font-weight:bold;
-    padding:10px 15px;
-    border-radius:10px;
+
+    font-weight:700;
+
     transition:.25s;
 }
 
 .nav-links a:hover,
 .nav-links a.active{
-    color:#fff;
-    background:rgba(25,169,255,.13);
+
+    color:var(--text);
+
+    background:
+        rgba(25,169,255,.1);
 }
 
-body.light .nav-links a:hover,
-body.light .nav-links a.active{
-    color:var(--blue2);
-}
+
+/* =========================================================
+   زر الوضع الليلي / النهاري
+========================================================= */
 
 #theme-button{
+
     position:fixed;
+
     left:20px;
+
     bottom:20px;
-    width:50px;
-    height:50px;
-    border:1px solid var(--border);
+
+    z-index:2000;
+
+    width:46px;
+
+    height:46px;
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:50%;
-    background:var(--card);
+
+    background:var(--card2);
+
     color:var(--text);
-    box-shadow:var(--shadow);
-    cursor:pointer;
+
     font-size:20px;
-    z-index:1200;
+
+    box-shadow:var(--shadow);
+
     transition:.25s;
 }
 
 #theme-button:hover{
-    transform:rotate(15deg) scale(1.06);
+
+    transform:
+        translateY(-3px)
+        rotate(10deg);
 }
 
-.container{
-    width:min(1150px,92%);
-    margin:auto;
-}
+
+/* =========================================================
+   الصفحة الرئيسية
+========================================================= */
 
 .hero{
-    padding:65px 0 35px;
-    text-align:center;
+
+    padding:
+        85px
+        0
+        45px;
+}
+
+.hero-inner{
+
+    display:grid;
+
+    grid-template-columns:
+        1.2fr
+        .8fr;
+
+    gap:30px;
+
+    align-items:center;
 }
 
 .hero-badge{
+
     display:inline-flex;
-    align-items:center;
-    gap:7px;
-    padding:8px 15px;
-    border:1px solid rgba(25,169,255,.2);
-    border-radius:30px;
-    background:rgba(25,169,255,.08);
+
+    padding:
+        8px
+        14px;
+
+    border-radius:999px;
+
+    background:
+        rgba(25,169,255,.1);
+
     color:var(--cyan);
-    font-weight:bold;
-    font-size:14px;
-    margin-bottom:20px;
+
+    border:
+        1px solid
+        rgba(25,169,255,.2);
+
+    font-weight:800;
+
+    margin-bottom:18px;
 }
 
 .hero h1{
-    font-size:clamp(34px,6vw,62px);
+
+    font-size:
+        clamp(
+            2.1rem,
+            5vw,
+            4.2rem
+        );
+
     line-height:1.15;
-    margin-bottom:15px;
-    font-weight:900;
+
+    margin-bottom:18px;
 }
 
 .hero h1 span{
-    background:linear-gradient(90deg,var(--cyan),var(--blue),#7b61ff);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+
+    color:var(--cyan);
 }
 
 .hero p{
+
     color:var(--muted);
-    font-size:18px;
-    line-height:1.8;
-    max-width:700px;
-    margin:auto;
+
+    font-size:1.08rem;
+
+    max-width:720px;
 }
 
-.clock{
-    margin:20px auto 0;
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:12px;
-    background:var(--card);
-    border:1px solid var(--border);
-    color:var(--muted);
-}
+.hero-actions{
 
-.card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:25px;
-    margin-bottom:22px;
-    box-shadow:var(--shadow);
-    backdrop-filter:blur(12px);
-}
-
-.card-title{
     display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:22px;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:28px;
 }
 
-.card-title .title-icon{
-    width:43px;
-    height:43px;
-    display:grid;
-    place-items:center;
-    background:rgba(25,169,255,.1);
-    border-radius:13px;
-    font-size:21px;
-}
+.btn{
 
-.card h2{
-    font-size:21px;
-}
-
-.card-subtitle{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:3px;
-}
-
-/* =========================
-   🎥 قسم الدروس
-========================= */
-
-.video-section{
-    position:relative;
-    overflow:hidden;
-}
-
-.video-section:before{
-    content:"";
-    position:absolute;
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    background:rgba(25,169,255,.07);
-    filter:blur(35px);
-    left:-80px;
-    top:-70px;
-    pointer-events:none;
-}
-
-.video-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-
-.video-card{
-    position:relative;
-    overflow:hidden;
-    border:1px solid var(--border);
-    border-radius:20px;
-    background:rgba(0,0,0,.13);
-    transition:.3s;
-}
-
-.video-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(25,169,255,.35);
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-}
-
-.video-frame{
-    width:100%;
-    aspect-ratio:16/9;
-    background:#000;
-}
-
-.video-frame iframe{
-    width:100%;
-    height:100%;
     border:0;
-    display:block;
-}
 
-.video-info{
-    padding:18px;
-}
+    padding:
+        12px
+        18px;
 
-.video-number{
-    display:inline-block;
-    padding:6px 10px;
-    border-radius:20px;
-    background:rgba(25,169,255,.1);
-    color:var(--cyan);
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
+    border-radius:14px;
 
-.video-title{
-    font-size:17px;
     font-weight:900;
-    line-height:1.7;
-    margin-bottom:7px;
+
+    transition:.25s;
 }
 
-.video-description{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.7;
+.btn:hover{
+
+    transform:
+        translateY(-2px);
 }
 
-.current-card{
-    overflow:hidden;
-    position:relative;
+.btn-primary{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--cyan)
+        );
+
+    color:#03101c;
 }
 
-.current-card:before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    background:rgba(25,169,255,.08);
-    left:-70px;
-    top:-80px;
+.btn-secondary{
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    border:
+        1px solid
+        var(--border);
 }
 
-.current-lesson{
-    position:relative;
+.hero-card{
+
+    padding:28px;
+
+    min-height:280px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
     text-align:center;
 }
 
-.lesson-status{
-    display:inline-block;
-    padding:7px 14px;
-    border-radius:30px;
-    background:rgba(32,214,154,.1);
-    color:var(--green);
-    font-weight:bold;
-    font-size:14px;
+.hero-icon{
+
+    font-size:5rem;
+
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+   الأقسام
+========================================================= */
+
+section{
+
+    padding:
+        35px
+        0;
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:24px;
+}
+
+.section-title h2{
+
+    font-size:2rem;
+
+    margin-bottom:6px;
+}
+
+.section-title p{
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   الدرس الحالي
+========================================================= */
+
+.lesson{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:25px;
+
+    flex-wrap:wrap;
 }
 
 .current-subject{
-    font-size:clamp(28px,5vw,43px);
+
+    font-size:32px;
+
     font-weight:900;
-    margin:17px 0 8px;
-    color:var(--text);
-}
 
-.current-time{
-    color:var(--muted);
-    font-size:16px;
-}
-
-.school-timer{
-    max-width:520px;
-    margin:23px auto 0;
-    padding:20px;
-    border-radius:18px;
-    background:linear-gradient(135deg,rgba(25,169,255,.12),rgba(0,110,255,.04));
-    border:1px solid rgba(25,169,255,.14);
-}
-
-.school-timer-label{
-    color:var(--muted);
-    margin-bottom:8px;
-}
-
-.school-timer-display{
-    direction:ltr;
-    font-size:42px;
-    font-weight:900;
-    letter-spacing:2px;
     color:var(--cyan);
 }
 
-.bell-area{
-    display:flex;
-    justify-content:center;
-    margin-top:20px;
+.current-time{
+
+    color:var(--green);
+
+    font-weight:900;
 }
 
+.lesson-info{
+
+    color:var(--muted);
+
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   الجرس
+========================================================= */
+
 .bell-button{
+
     border:0;
-    padding:13px 22px;
-    border-radius:13px;
-    background:linear-gradient(135deg,var(--orange),#ff7b22);
-    color:#fff;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:bold;
-    box-shadow:0 8px 25px rgba(255,152,0,.2);
+
+    padding:
+        12px
+        18px;
+
+    border-radius:14px;
+
+    background:
+        var(--card2);
+
+    color:var(--text);
+
+    font-weight:900;
+
+    border:
+        1px solid
+        var(--border);
+
     transition:.25s;
 }
 
 .bell-button:hover{
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
 .bell-button.active{
-    background:linear-gradient(135deg,var(--green),#0da978);
+
+    background:
+        rgba(32,214,154,.12);
+
+    border-color:
+        rgba(32,214,154,.4);
+
+    color:var(--green);
 }
 
 .bell-button.ringing{
-    background:var(--red);
-    animation:alarmPulse .8s infinite;
+
+    animation:
+        ringBell
+        .7s
+        infinite;
+
+    background:
+        rgba(255,82,104,.12);
+
+    border-color:
+        rgba(255,82,104,.5);
+
+    color:var(--red);
 }
 
-@keyframes alarmPulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.06)}
+@keyframes ringBell{
+
+    0%,100%{
+        transform:rotate(0);
+    }
+
+    25%{
+        transform:rotate(-5deg);
+    }
+
+    75%{
+        transform:rotate(5deg);
+    }
 }
+
+
+/* =========================================================
+   الإحصائيات
+========================================================= */
 
 .stats{
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:18px;
 }
 
 .stat{
-    padding:22px 15px;
+
+    padding:22px;
+
     text-align:center;
-    border-radius:17px;
-    background:rgba(25,169,255,.055);
-    border:1px solid var(--border);
+
+    background:
+        var(--card2);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
 }
 
 .stat-number{
+
     display:block;
-    font-size:34px;
+
+    font-size:2rem;
+
     font-weight:900;
-    color:var(--blue);
-    margin-bottom:7px;
+
+    color:var(--cyan);
 }
 
 .stat-label{
+
     color:var(--muted);
-    font-size:14px;
+
+    font-weight:700;
 }
 
+
+/* =========================================================
+   المؤقت
+========================================================= */
+
 .timer{
+
     text-align:center;
+
+    padding:30px;
 }
 
 .timer select{
-    appearance:none;
-    padding:11px 18px;
-    border-radius:11px;
-    border:1px solid var(--border);
-    background:var(--card2);
-    color:var(--text);
-    font-size:15px;
-    outline:none;
+
+    padding:
+        10px
+        15px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--card2);
+
+    color:
+        var(--text);
 }
 
 .timer-display{
-    direction:ltr;
-    font-size:72px;
-    font-weight:900;
-    letter-spacing:2px;
-    margin:18px 0 5px;
-    background:linear-gradient(90deg,var(--cyan),var(--blue));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-}
 
-#timerStatus{
-    color:var(--muted);
+    font-size:65px;
+
+    font-weight:900;
+
+    color:var(--cyan);
+
+    margin:
+        15px
+        0;
 }
 
 .timer-buttons{
+
     display:flex;
+
     justify-content:center;
+
     gap:10px;
+
     flex-wrap:wrap;
-    margin-top:20px;
 }
 
-.timer-buttons button,
-.main-button{
+.timer-buttons button{
+
     border:0;
-    padding:11px 18px;
-    border-radius:11px;
-    background:var(--blue);
-    color:#fff;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.25s;
+
+    padding:
+        11px
+        18px;
+
+    border-radius:13px;
+
+    background:
+        var(--card2);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid
+        var(--border);
+
+    font-weight:900;
 }
 
-.timer-buttons button:hover,
-.main-button:hover{
-    transform:translateY(-2px);
-    background:var(--blue2);
+.timer-buttons button:first-child{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--cyan)
+        );
+
+    color:#03101c;
 }
+
+
+/* =========================================================
+   الإنجازات
+========================================================= */
 
 .achievements{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:13px;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:18px;
 }
 
 .achievement{
+
+    padding:22px;
+
     text-align:center;
-    padding:18px 10px;
-    border-radius:16px;
-    background:rgba(255,255,255,.025);
-    border:1px solid var(--border);
-    opacity:.38;
-    transition:.3s;
-}
 
-.achievement.unlocked{
-    opacity:1;
-    border-color:rgba(32,214,154,.5);
-    background:rgba(32,214,154,.07);
-    transform:translateY(-2px);
-}
+    border:
+        1px solid
+        var(--border);
 
-.achievement .icon{
-    display:block;
-    font-size:32px;
-    margin-bottom:8px;
-}
+    background:
+        var(--card2);
 
-.schedule{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.day-card{
-    padding:18px;
     border-radius:18px;
-    background:rgba(255,255,255,.025);
-    border:1px solid var(--border);
-}
 
-.day-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    color:var(--blue);
-    font-size:20px;
-    font-weight:900;
-    padding-bottom:10px;
-    border-bottom:1px solid var(--border);
-    margin-bottom:12px;
-}
-
-.lesson{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:12px;
-    margin:8px 0;
-    border-radius:12px;
-    background:rgba(0,0,0,.13);
-    border:1px solid transparent;
-    transition:.2s;
-}
-
-.lesson:hover{
-    border-color:rgba(25,169,255,.18);
-}
-
-.lesson-info{
-    flex:1;
-    min-width:0;
-}
-
-.lesson-time{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:4px;
-}
-
-.lesson.completed{
     opacity:.45;
 }
 
-.lesson.completed .lesson-info{
-    text-decoration:line-through;
+.achievement.unlocked{
+
+    opacity:1;
+
+    border-color:
+        rgba(32,214,154,.35);
 }
 
-.lesson button{
+.achievement-icon{
+
+    font-size:40px;
+
+    margin-bottom:8px;
+}
+
+
+/* =========================================================
+   جدول المراجعة
+========================================================= */
+
+.schedule-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:
+        var(--card2);
+}
+
+.schedule-table th,
+.schedule-table td{
+
+    padding:
+        13px
+        10px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    text-align:center;
+}
+
+.schedule-table th{
+
+    color:
+        var(--cyan);
+
+    font-weight:900;
+}
+
+.schedule-table tr:last-child td{
+
+    border-bottom:0;
+}
+
+
+/* =========================================================
+   تعديل برنامج المراجعة
+========================================================= */
+
+.edit-schedule{
+
+    margin-top:20px;
+
+    padding:24px;
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:14px;
+}
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:7px;
+}
+
+.field label{
+
+    font-weight:800;
+}
+
+.field input,
+.field select,
+.field textarea{
+
+    width:100%;
+
+    padding:
+        12px
+        14px;
+
+    border-radius:13px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--card2);
+
+    color:
+        var(--text);
+
+    outline:none;
+}
+
+.field textarea{
+
+    min-height:130px;
+
+    resize:vertical;
+}
+
+.edit-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:15px;
+}
+
+.edit-buttons button{
+
+    padding:
+        11px
+        17px;
+
+    border-radius:13px;
+
     border:0;
-    min-width:34px;
-    height:34px;
-    border-radius:9px;
-    background:var(--blue);
-    color:#fff;
-    cursor:pointer;
+
+    font-weight:900;
+
+    background:
+        var(--blue);
+
+    color:#03101c;
 }
 
-.lesson button.restore{
-    background:#4d5965;
+.edit-buttons button:last-child{
+
+    background:
+        var(--card2);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid
+        var(--border);
 }
 
-.reset-all{
-    margin-top:18px;
-    background:var(--red);
-}
 
-.reset-all:hover{
-    background:#e63e55;
-}
+/* =========================================================
+   المدرسة
+========================================================= */
 
-.school-schedule{
+.school-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:
+        var(--card2);
+
+    border-radius:18px;
+
     overflow:hidden;
 }
 
-.table-wrap{
-    overflow-x:auto;
-    border-radius:14px;
-}
+.school-table th,
+.school-table td{
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:700px;
-}
+    padding:
+        12px
+        10px;
 
-th,td{
-    padding:14px 12px;
-    border:1px solid var(--border);
     text-align:center;
+
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
-th{
-    background:rgba(25,169,255,.08);
-    color:var(--blue);
+.school-table th{
+
+    color:
+        var(--cyan);
 }
 
-td{
-    color:var(--muted);
+.school-table tr:last-child td{
+
+    border-bottom:0;
 }
 
-.contact-card{
-    text-align:center;
-}
 
-.contact-description{
-    color:var(--muted);
-    line-height:1.9;
-    max-width:650px;
-    margin:0 auto 25px;
-}
+/* =========================================================
+   التواصل
+========================================================= */
 
 .contact-form{
-    width:min(650px,100%);
-    margin:auto;
-    text-align:right;
-}
 
-.contact-form label{
-    display:block;
-    margin-bottom:7px;
-    font-weight:bold;
+    padding:25px;
+
+    display:grid;
+
+    gap:14px;
 }
 
 .contact-form input,
 .contact-form textarea{
-    width:100%;
-    padding:13px;
-    margin-bottom:15px;
-    border-radius:11px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.035);
-    color:var(--text);
-    font-family:Arial,sans-serif;
-    font-size:15px;
-    outline:none;
-}
 
-.contact-form input:focus,
-.contact-form textarea:focus{
-    border-color:var(--blue);
-    box-shadow:0 0 0 3px rgba(25,169,255,.1);
+    width:100%;
+
+    padding:
+        13px
+        15px;
+
+    border-radius:13px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--card2);
+
+    color:
+        var(--text);
+
+    outline:none;
 }
 
 .contact-form textarea{
-    min-height:140px;
+
+    min-height:150px;
+
     resize:vertical;
 }
 
-.contact-submit{
-    width:100%;
-    padding:13px;
+.contact-form button{
+
+    padding:
+        13px
+        18px;
+
     border:0;
-    border-radius:11px;
-    background:linear-gradient(135deg,var(--blue),var(--blue2));
-    color:#fff;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            var(--cyan)
+        );
+
+    color:#03101c;
+
+    font-weight:900;
 }
 
-.contact-submit:disabled{
-    opacity:.6;
-    cursor:not-allowed;
+
+/* =========================================================
+   الفيديوهات
+========================================================= */
+
+.video-section{
+
+    padding-top:20px;
 }
 
-#contactStatus{
-    margin-top:13px;
-    line-height:1.7;
-}
+.subject-video-box{
 
-.contact-success{
-    color:var(--green);
-}
+    margin-bottom:18px;
 
-.contact-error{
-    color:var(--red);
-}
+    border:
+        1px solid
+        var(--border);
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:3000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(5px);
-}
-
-.modal-content{
-    width:min(450px,100%);
-    padding:25px;
     border-radius:22px;
-    background:var(--card2);
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    background:
+        var(--card);
 }
 
-.modal-content h2{
-    color:var(--blue);
-    margin-bottom:20px;
-}
+.subject-video-button{
 
-.modal-content label{
-    display:block;
-    margin:12px 0 6px;
-}
-
-.modal-content input{
     width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:var(--text);
-    outline:none;
-}
 
-.modal-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-}
-
-.modal-buttons button{
-    flex:1;
-    padding:12px;
     border:0;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    background:
+        var(--card2);
+
+    color:
+        var(--text);
+
+    font-weight:900;
+
+    font-size:1.05rem;
+
+    text-align:right;
 }
 
-.save-button{
-    background:var(--green);
-    color:#fff;
+.subject-video-button:hover{
+
+    background:
+        rgba(25,169,255,.08);
 }
 
-.cancel-button{
-    background:#555;
-    color:#fff;
+.subject-video-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
 }
 
-footer{
-    text-align:center;
-    color:var(--muted);
-    padding:30px 10px 45px;
+.subject-video-icon{
+
+    font-size:2rem;
+}
+
+.subject-video-arrow{
+
+    transition:.3s;
+}
+
+.subject-video-box.open
+.subject-video-arrow{
+
+    transform:
+        rotate(180deg);
+}
+
+.subject-video-content{
+
+    display:none;
+
+    padding:20px;
+}
+
+.subject-video-box.open
+.subject-video-content{
+
+    display:block;
+}
+
+.video-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:18px;
+}
+
+.video-card{
+
+    padding:12px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:18px;
+
+    background:
+        var(--card2);
+}
+
+.video-card iframe{
+
+    width:100%;
+
+    aspect-ratio:
+        16 / 9;
+
+    border:0;
+
+    border-radius:12px;
+
+    display:block;
+}
+
+.video-info{
+
+    padding:
+        10px
+        4px
+        3px;
+}
+
+.video-number{
+
+    display:block;
+
+    color:
+        var(--cyan);
+
+    font-weight:900;
+
     font-size:14px;
 }
 
-footer strong{
-    color:var(--blue);
+.video-title{
+
+    font-weight:900;
+
+    margin-top:3px;
+}
+
+.video-description{
+
+    color:
+        var(--muted);
+
+    font-size:13px;
+
+    margin-top:2px;
+}
+
+
+/* =========================================================
+   🧪 مخبر الأنواع الكيميائية
+========================================================= */
+
+.chemistry-lab-section{
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.chemistry-lab-box{
+
+    width:100%;
+
+    height:
+        min(
+            850px,
+            80vh
+        );
+
+    min-height:600px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:20px;
+
+    background:#fff;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.chemistry-lab-box iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:0;
+
+    display:block;
+
+    background:#fff;
 }
 
 @media(max-width:800px){
 
-    nav{
-        padding:12px 4%;
-        flex-direction:column;
+    .chemistry-lab-box{
+
+        height:75vh;
+
+        min-height:520px;
+
+        border-radius:16px;
+    }
+}
+
+@media(max-width:480px){
+
+    .chemistry-lab-box{
+
+        height:78vh;
+
+        min-height:500px;
+
+        border-radius:14px;
+    }
+}
+
+
+/* =========================================================
+   الفوتر
+========================================================= */
+
+footer{
+
+    margin-top:50px;
+
+    padding:
+        30px
+        0;
+
+    border-top:
+        1px solid
+        var(--border);
+
+    text-align:center;
+
+    color:
+        var(--muted);
+}
+
+
+/* =========================================================
+   الهاتف
+========================================================= */
+
+@media(max-width:900px){
+
+    .hero-inner{
+
+        grid-template-columns:1fr;
     }
 
-    .logo{
-        font-size:17px;
+    .stats{
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+    .achievements{
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .video-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    nav{
+
+        flex-direction:column;
+
+        padding:
+            12px
+            4%;
     }
 
     .nav-links{
-        justify-content:center;
+
+        width:100%;
+
+        overflow-x:auto;
+
+        justify-content:flex-start;
+
+        flex-wrap:nowrap;
+
+        padding-bottom:4px;
     }
 
     .nav-links a{
-        padding:8px 9px;
-        font-size:13px;
+
+        white-space:nowrap;
     }
 
     .hero{
-        padding:45px 0 25px;
-    }
 
-    .hero p{
-        font-size:16px;
+        padding-top:45px;
     }
 
     .stats,
     .achievements,
-    .schedule,
-    .video-grid{
+    .form-grid{
+
         grid-template-columns:1fr;
     }
 
-    .card{
-        padding:18px;
-        border-radius:19px;
-    }
-
     .timer-display{
-        font-size:55px;
-    }
 
-    .lesson{
-        flex-wrap:wrap;
-    }
-
-    .school-timer-display{
-        font-size:35px;
-    }
-
-    #theme-button{
-        left:14px;
-        bottom:14px;
+        font-size:48px;
     }
 }
 
 @media(max-width:480px){
 
     .nav-links{
+
         gap:2px;
     }
 
     .nav-links a{
+
         padding:7px;
+
         font-size:12px;
     }
 
     .hero h1{
+
         font-size:35px;
     }
 
     .current-subject{
+
         font-size:27px;
     }
 
     .lesson button{
+
         min-width:32px;
     }
 
     .video-title{
+
         font-size:15px;
     }
+
+    .chemistry-lab-box{
+
+        height:78vh;
+
+        min-height:500px;
+
+        border-radius:14px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
 <nav>
+
     <div class="logo">
-        📚 <span>Learning is easy with us</span>
+
+        📚
+        <span>
+            Learning is easy with us
+        </span>
+
     </div>
 
     <div class="nav-links">
-        <a href="#home" class="active">الرئيسية</a>
-        <a href="#videos-section">🎥 الدروس</a>
-        <a href="#schedule-section">المراجعة</a>
-        <a href="#school-section">المدرسة</a>
-        <a href="#contact">تواصل معي</a>
+
+        <a href="#home" class="active">
+            الرئيسية
+        </a>
+
+        <a href="#videos-section">
+            🎥 الدروس
+        </a>
+
+        <a href="#chemistry-lab-section">
+            🧪 المخبر
+        </a>
+
+        <a href="#schedule-section">
+            المراجعة
+        </a>
+
+        <a href="#school-section">
+            المدرسة
+        </a>
+
+        <a href="#contact">
+            تواصل معي
+        </a>
+
     </div>
+
 </nav>
 
-<button id="theme-button" onclick="toggleTheme()">🌙</button>
 
-<main class="container" id="home">
+<button
+    id="theme-button"
+    onclick="toggleTheme()">
+    🌙
+</button>
+
+
+<main
+    class="container"
+    id="home">
+
 
 <section class="hero">
 
-    <div class="hero-badge">
-        ✨ تنظيم دراستك أصبح أسهل
-    </div>
+    <div class="hero-inner">
 
-    <h1>
-        <span>Learning is easy with us</span>
-    </h1>
-
-    <p>
-        منصتك الشخصية لتنظيم المراجعة والدراسة،
-        متابعة الحصص، مشاهدة الدروس، استخدام المؤقت،
-        وتحقيق الإنجازات.
-    </p>
-
-    <div class="clock" id="clock">
-        🕐 جاري تحميل الوقت...
-    </div>
-
-</section>
-
-<section class="card current-card">
-
-    <div class="card-title">
-        <div class="title-icon">📖</div>
         <div>
-            <h2>ماذا أدرس الآن؟</h2>
-            <div class="card-subtitle">الحصة حسب توقيت الجزائر</div>
+
+            <div class="hero-badge">
+
+                ✨ تنظيم دراستك أصبح أسهل
+
+            </div>
+
+
+            <h1>
+
+                Learning is easy
+                <span>
+                    with us
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                موقعك الدراسي لتنظيم
+                الدراسة والمراجعة
+                للسنة الأولى ثانوي تقني.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#schedule-section"
+                    class="btn btn-primary">
+
+                    📚 ابدأ المراجعة
+
+                </a>
+
+
+                <a
+                    href="#videos-section"
+                    class="btn btn-secondary">
+
+                    🎥 شاهد الدروس
+
+                </a>
+
+            </div>
+
         </div>
-    </div>
 
-    <div class="current-lesson" id="currentLesson">
-        جاري التحقق من الحصة...
-    </div>
 
-    <div class="bell-area">
-        <button id="bellButton" class="bell-button" onclick="enableBell()">
-            🔔 تفعيل الجرس
-        </button>
+        <div class="card hero-card">
+
+            <div>
+
+                <div class="hero-icon">
+                    🎓
+                </div>
+
+                <h2>
+                    برنامج 1ع تك1
+                </h2>
+
+                <p>
+                    كل ما تحتاجه لدراستك في مكان واحد
+                </p>
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>
 
 
-    
-```html
-<!-- =====================================================
-     🎥 قسم الدروس بالفيديو
-     نظام المواد القابلة للفتح والإغلاق
-===================================================== -->
+<section>
 
-<style>
+    <div class="section-title">
 
-/* ===== بطاقات المواد ===== */
+        <h2>
+            ماذا أدرس الآن؟
+        </h2>
 
-.subject-video-list{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-}
+        <p>
+            الحصة حسب توقيت الجزائر
+        </p>
 
-/* بطاقة المادة */
-
-.subject-video-box{
-    border:1px solid var(--border);
-    border-radius:20px;
-    overflow:hidden;
-    background:rgba(255,255,255,.025);
-    transition:.3s;
-}
-
-.subject-video-box:hover{
-    border-color:rgba(25,169,255,.35);
-}
-
-/* زر المادة */
-
-.subject-video-button{
-    width:100%;
-    border:0;
-    background:transparent;
-    color:var(--text);
-    padding:22px;
-    display:flex;
-    align-items:center;
-    gap:15px;
-    cursor:pointer;
-    text-align:right;
-    transition:.25s;
-}
-
-.subject-video-button:hover{
-    background:rgba(25,169,255,.07);
-}
-
-.subject-icon{
-    width:58px;
-    height:58px;
-    flex-shrink:0;
-    display:grid;
-    place-items:center;
-    border-radius:16px;
-    background:rgba(25,169,255,.1);
-    font-size:30px;
-}
-
-.subject-name{
-    flex:1;
-}
-
-.subject-name strong{
-    display:block;
-    font-size:19px;
-    margin-bottom:5px;
-}
-
-.subject-name span{
-    color:var(--muted);
-    font-size:13px;
-}
-
-.subject-arrow{
-    font-size:22px;
-    color:var(--blue);
-    transition:.3s;
-}
-
-.subject-video-box.open .subject-arrow{
-    transform:rotate(180deg);
-}
-
-/* محتوى الدروس */
-
-.subject-video-content{
-    display:none;
-    padding:0 18px 20px;
-    border-top:1px solid var(--border);
-}
-
-.subject-video-box.open .subject-video-content{
-    display:block;
-    animation:videoOpen .3s ease;
-}
-
-@keyframes videoOpen{
-    from{
-        opacity:0;
-        transform:translateY(-8px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* شبكة الفيديوهات */
-
-.subject-video-content .video-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-    padding-top:18px;
-}
-
-/* الفيديو */
-
-.subject-video-content .video-card{
-    position:relative;
-    overflow:hidden;
-    border:1px solid var(--border);
-    border-radius:18px;
-    background:rgba(0,0,0,.13);
-    transition:.3s;
-}
-
-.subject-video-content .video-card:hover{
-    transform:translateY(-3px);
-    border-color:rgba(25,169,255,.35);
-}
-
-.subject-video-content .video-frame{
-    width:100%;
-    aspect-ratio:16/9;
-    background:#000;
-}
-
-.subject-video-content .video-frame iframe{
-    width:100%;
-    height:100%;
-    border:0;
-    display:block;
-}
-
-.subject-video-content .video-info{
-    padding:15px;
-}
-
-.subject-video-content .video-number{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    background:rgba(25,169,255,.1);
-    color:var(--cyan);
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.subject-video-content .video-title{
-    font-size:16px;
-    font-weight:900;
-    line-height:1.6;
-    margin-bottom:5px;
-}
-
-.subject-video-content .video-description{
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.6;
-}
-
-/* الهاتف */
-
-@media(max-width:800px){
-
-    .subject-video-list{
-        grid-template-columns:1fr;
-    }
-
-    .subject-video-content .video-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-</style>
+    </div>
 
 
-<section class="card video-section" id="videos-section">
+    <div class="card lesson">
+
+        <div>
+
+            <div
+                class="current-subject"
+                id="currentSubject">
+
+                جاري التحقق...
+
+            </div>
+
+            <div
+                class="current-time"
+                id="currentTime">
+
+                --:--
+
+            </div>
+
+            <div
+                class="lesson-info"
+                id="currentLessonInfo">
+
+                يتم تحديث الحصة تلقائيًا
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="bell-button"
+            id="bellButton"
+            onclick="enableBell()">
+
+            🔔 تفعيل الجرس
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            📊 إحصائياتي
+        </h2>
+
+        <p>
+            تابع تقدمك في المراجعة
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="todayLessons">
+
+                0
+
+            </span>
+
+            <span class="stat-label">
+
+                حصص اليوم
+
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="completedLessons">
+
+                0
+
+            </span>
+
+            <span class="stat-label">
+
+                حصص مكتملة
+
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="studyHours">
+
+                0
+
+            </span>
+
+            <span class="stat-label">
+
+                حصص منجزة
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <section id="schedule-section">
+
+    <div class="section-title">
+
+        <h2>
+            📚 برنامج المراجعة
+        </h2>
+
+        <p>
+            برنامجك الأسبوعي للمراجعة
+        </p>
+
+    </div>
+
+
+    <div class="card edit-schedule">
+
+        <div style="overflow-x:auto;">
+
+            <table class="schedule-table">
+
+                <thead>
+
+                    <tr>
+                        <th>اليوم</th>
+                        <th>المادة</th>
+                        <th>من</th>
+                        <th>إلى</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="reviewScheduleBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div style="margin-top:25px;">
+
+            <h3 style="margin-bottom:15px;">
+                ✏️ تعديل برنامج المراجعة
+            </h3>
+
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label for="editDay">
+                        اليوم
+                    </label>
+
+                    <select id="editDay">
+
+                        <option value="الأحد">
+                            الأحد
+                        </option>
+
+                        <option value="الإثنين">
+                            الإثنين
+                        </option>
+
+                        <option value="الثلاثاء">
+                            الثلاثاء
+                        </option>
+
+                        <option value="الأربعاء">
+                            الأربعاء
+                        </option>
+
+                        <option value="الخميس">
+                            الخميس
+                        </option>
+
+                        <option value="الجمعة">
+                            الجمعة
+                        </option>
+
+                        <option value="السبت">
+                            السبت
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="editSubject">
+                        المادة
+                    </label>
+
+                    <input
+                        id="editSubject"
+                        type="text"
+                        placeholder="مثال: الرياضيات">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="editStart">
+                        وقت البداية
+                    </label>
+
+                    <input
+                        id="editStart"
+                        type="time">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="editEnd">
+                        وقت النهاية
+                    </label>
+
+                    <input
+                        id="editEnd"
+                        type="time">
+
+                </div>
+
+            </div>
+
+
+            <div class="edit-buttons">
+
+                <button
+                    onclick="addOrUpdateReview()">
+
+                    ➕ إضافة / تعديل
+
+                </button>
+
+
+                <button
+                    onclick="restoreOriginalSchedule()">
+
+                    🔄 إعادة برنامج المراجعة الأصلي بالكامل
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="school-section">
+
+    <div class="section-title">
+
+        <h2>
+            🏫 برنامج المدرسة
+        </h2>
+
+        <p>
+            جدول الحصص المدرسية
+        </p>
+
+    </div>
+
+
+    <div class="card" style="padding:20px;overflow-x:auto;">
+
+        <table class="school-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        اليوم
+                    </th>
+
+                    <th>
+                        الفترة الصباحية
+                    </th>
+
+                    <th>
+                        الفترة المسائية
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>
+                        الأحد
+                    </td>
+
+                    <td>
+                        💻 إعلام آلي<br>
+                        🏗️ هندسة مدنية<br>
+                        ☪️ علوم إسلامية<br>
+                        🇬🇧 إنجليزية
+                    </td>
+
+                    <td>
+                        🇫🇷 فرنسية 13:30<br>
+                        📖 عربية 14:30<br>
+                        ⚡ فيزياء 15:30
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        الإثنين
+                    </td>
+
+                    <td>
+                        ➗ رياضيات<br>
+                        📜 تاريخ<br>
+                        📖 عربية<br>
+                        🇬🇧 إنجليزية
+                    </td>
+
+                    <td>
+                        🔬 علوم<br>
+                        ⚡ فيزياء 15:30 → 17:30
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        الثلاثاء
+                    </td>
+
+                    <td>
+                        🏗️ هندسة مدنية<br>
+                        📖 عربية<br>
+                        ➗ رياضيات<br>
+                        🔬 علوم طبيعية
+                    </td>
+
+                    <td>
+                        —
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        الأربعاء
+                    </td>
+
+                    <td>
+                        💻 إعلام آلي<br>
+                        📖 عربية<br>
+                        ➗ رياضيات<br>
+                        ➗ رياضيات
+                    </td>
+
+                    <td>
+                        🇫🇷 فرنسية<br>
+                        📜 تاريخ<br>
+                        🇬🇧 إنجليزية
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        الخميس
+                    </td>
+
+                    <td>
+                        🔬 علوم<br>
+                        ⚡ فيزياء<br>
+                        ⚽ تربية بدنية<br>
+                        ⚽ تربية بدنية
+                    </td>
+
+                    <td>
+                        ➗ رياضيات 13:30 → 15:30<br>
+                        🇫🇷 فرنسية 15:30 → 17:30
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        الجمعة
+                    </td>
+
+                    <td colspan="2">
+                        🏠 لا توجد دراسة مدرسية
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        السبت
+                    </td>
+
+                    <td colspan="2">
+                        🏠 لا توجد دراسة مدرسية
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<section id="achievements-section">
+
+    <div class="section-title">
+
+        <h2>
+            🏆 إنجازاتي
+        </h2>
+
+        <p>
+            واصل الدراسة لفتح الإنجازات
+        </p>
+
+    </div>
+
+
+    <div class="achievements">
+
+        <div
+            class="achievement"
+            id="achievement1">
+
+            <div class="achievement-icon">
+                🌱
+            </div>
+
+            <h3>
+                البداية
+            </h3>
+
+            <p>
+                ابدأ أول جلسة دراسة
+            </p>
+
+        </div>
+
+
+        <div
+            class="achievement"
+            id="achievement2">
+
+            <div class="achievement-icon">
+                🔥
+            </div>
+
+            <h3>
+                الاستمرارية
+            </h3>
+
+            <p>
+                واصل الدراسة لعدة أيام
+            </p>
+
+        </div>
+
+
+        <div
+            class="achievement"
+            id="achievement3">
+
+            <div class="achievement-icon">
+                🏆
+            </div>
+
+            <h3>
+                الطالب المجتهد
+            </h3>
+
+            <p>
+                أكمل عددًا من حصص المراجعة
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     🎥 دروس الفيديو
+====================================================== -->
+
+<section
+    id="videos-section"
+    class="video-section">
+
+    <div class="section-title">
+
+        <h2>
+            🎥 دروس الفيديو
+        </h2>
+
+        <p>
+            شاهد دروسك مباشرة من الموقع
+        </p>
+
+    </div>
+
+
+    <!-- الرياضيات -->
+
+    <div class="subject-video-box">
+
+        <button
+            class="subject-video-button"
+            onclick="toggleSubjectVideos(this)">
+
+            <div class="subject-video-title">
+
+                <span class="subject-video-icon">
+                    📐
+                </span>
+
+                <span>
+                    دروس الرياضيات
+                </span>
+
+            </div>
+
+            <span class="subject-video-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="subject-video-content">
+
+            <div class="video-grid">
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/SiwANq5js_w"
+                        title="درس الرياضيات 1"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 1
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/ekZHOZ2nZFg"
+                        title="درس الرياضيات 2"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 2
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/ye_iS47a7yk"
+                        title="درس الرياضيات 3"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 3
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/rs2yKtdd8qc"
+                        title="درس الرياضيات 4"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 4
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/PKJ1jMhHMzo"
+                        title="درس الرياضيات 5"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 5
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/7Xns4feLSiI"
+                        title="درس الرياضيات 6"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 6
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/nXDTb6bZiTo"
+                        title="درس الرياضيات 7"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 7
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/MYkLzBXJ-5o"
+                        title="درس الرياضيات 8"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 8
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/xRYmShGz6f4"
+                        title="درس الرياضيات 9"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 9
+                        </span>
+
+                        <div class="video-title">
+                            درس الرياضيات
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- الفيزياء -->
+
+    <div class="subject-video-box">
+
+        <button
+            class="subject-video-button"
+            onclick="toggleSubjectVideos(this)">
+
+            <div class="subject-video-title">
+
+                <span class="subject-video-icon">
+                    ⚡
+                </span>
+
+                <span>
+                    دروس الفيزياء
+                </span>
+
+            </div>
+
+            <span class="subject-video-arrow">
+                ▼
+            </span>
+
+        </button>
+
+
+        <div class="subject-video-content">
+
+            <div class="video-grid">
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/Zs_HNZW_ECM"
+                        title="درس الفيزياء 1"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 1
+                        </span>
+
+                        <div class="video-title">
+                            درس الفيزياء
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/dXhSLKisUbU"
+                        title="درس الفيزياء 2"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 2
+                        </span>
+
+                        <div class="video-title">
+                            درس الفيزياء
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/-lFlnPc2LCo"
+                        title="درس الفيزياء 3"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 3
+                        </span>
+
+                        <div class="video-title">
+                            درس الفيزياء
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/Pd6VD3_VgdE"
+                        title="درس الفيزياء 4"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 4
+                        </span>
+
+                        <div class="video-title">
+                            درس الفيزياء
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/uZ1o5viWAHs"
+                        title="درس الفيزياء 5"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="video-info">
+
+                        <span class="video-number">
+                            الدرس 5
+                        </span>
+
+                        <div class="video-title">
+                            درس الفيزياء
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+    <section class="card chemistry-lab-section" id="chemistry-lab-section">
 
     <div class="card-title">
 
-        <div class="title-icon">🎥</div>
+        <div class="title-icon">🧪</div>
 
         <div>
-            <h2>دروس الفيديو</h2>
+
+            <h2>
+                مخبر الأنواع الكيميائية
+            </h2>
 
             <div class="card-subtitle">
-                اختر المادة لمشاهدة جميع دروسها
+                محاكاة تفاعلية لدروس الفيزياء للسنة الأولى ثانوي
             </div>
+
         </div>
 
     </div>
 
 
-    <div class="subject-video-list">
-
-
-
-        
-        <!-- =================================================
-             📐 الرياضيات
-        ================================================== -->
-
-        <div class="subject-video-box">
-
-            <button
-                class="subject-video-button"
-                onclick="toggleSubjectVideos(this)"
-            >
-
-                <div class="subject-icon">
-                    📐
-                </div>
-
-                <div class="subject-name">
-
-                    <strong>الرياضيات</strong>
-
-                    <span>
-                        9 دروس فيديو
-                    </span>
-
-                </div>
-
-                <div class="subject-arrow">
-                    ▼
-                </div>
-
-            </button>
-
-
-            <div class="subject-video-content">
-
-                <div class="video-grid">
-
-
-                    <!-- الدرس 1 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/SiwANq5js_w"
-                                title="رياضيات - الدرس 1"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 1
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 1
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 2 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/ekZHOZ2nZFg"
-                                title="رياضيات - الدرس 2"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 2
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 2
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 3 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/ye_iS47a7yk"
-                                title="رياضيات - الدرس 3"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 3
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 3
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 4 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/rs2yKtdd8qc"
-                                title="رياضيات - الدرس 4"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 4
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 4
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 5 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/PKJ1jMhHMzo"
-                                title="رياضيات - الدرس 5"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 5
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 5
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 6 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/7Xns4feLSiI"
-                                title="رياضيات - الدرس 6"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 6
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 6
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 7 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/nXDTb6bZiTo"
-                                title="رياضيات - الدرس 7"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 7
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 7
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 8 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/MYkLzBXJ-5o"
-                                title="رياضيات - الدرس 8"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 8
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 8
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الدرس 9 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/xRYmShGz6f4"
-                                title="رياضيات - الدرس 9"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                📐 الدرس 9
-                            </span>
-
-                            <div class="video-title">
-                                الرياضيات — الدرس 9
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الرياضيات للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================================
-             ⚡ الفيزياء
-        ================================================== -->
-
-        <div class="subject-video-box">
-
-            <button
-                class="subject-video-button"
-                onclick="toggleSubjectVideos(this)"
-            >
-
-                <div class="subject-icon">
-                    ⚡
-                </div>
-
-                <div class="subject-name">
-
-                    <strong>الفيزياء</strong>
-
-                    <span>
-                        5 دروس فيديو
-                    </span>
-
-                </div>
-
-                <div class="subject-arrow">
-                    ▼
-                </div>
-
-            </button>
-
-
-            <div class="subject-video-content">
-
-                <div class="video-grid">
-
-
-                    <!-- الفيزياء 1 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/Zs_HNZW_ECM"
-                                title="فيزياء - الدرس 1"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                ⚡ الدرس 1
-                            </span>
-
-                            <div class="video-title">
-                                الفيزياء — الدرس 1
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الفيزياء للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الفيزياء 2 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/dXhSLKisUbU"
-                                title="فيزياء - الدرس 2"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                ⚡ الدرس 2
-                            </span>
-
-                            <div class="video-title">
-                                الفيزياء — الدرس 2
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الفيزياء للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الفيزياء 3 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/-lFlnPc2LCo"
-                                title="فيزياء - الدرس 3"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                ⚡ الدرس 3
-                            </span>
-
-                            <div class="video-title">
-                                الفيزياء — الدرس 3
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الفيزياء للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الفيزياء 4 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/Pd6VD3_VgdE"
-                                title="فيزياء - الدرس 4"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                ⚡ الدرس 4
-                            </span>
-
-                            <div class="video-title">
-                                الفيزياء — الدرس 4
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الفيزياء للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- الفيزياء 5 -->
-
-                    <div class="video-card">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube.com/embed/uZ1o5viWAHs"
-                                title="فيزياء - الدرس 5"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                        <div class="video-info">
-
-                            <span class="video-number">
-                                ⚡ الدرس 5
-                            </span>
-
-                            <div class="video-title">
-                                الفيزياء — الدرس 5
-                            </div>
-
-                            <div class="video-description">
-                                شرح درس الفيزياء للسنة الأولى ثانوي.
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
+    <div class="chemistry-lab-box">
+
+        <iframe
+            src="https://859283c3-ff10-4be3-9459-735f0549832f.frame.claudeusercontent.com/_f/1791332047-a47b/?__frame_v=manifest.0a485261030174f9.json"
+            title="مخبر الأنواع الكيميائية"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
 
     </div>
 
 </section>
-
-
-<script>
-
-/* =====================================================
-   فتح وإغلاق دروس المادة
-===================================================== */
-
-function toggleSubjectVideos(button){
-
-    const box = button.closest(".subject-video-box");
-
-    const allBoxes = document.querySelectorAll(".subject-video-box");
-
-    /* إغلاق المواد الأخرى */
-
-    allBoxes.forEach(item => {
-
-        if(item !== box){
-            item.classList.remove("open");
-        }
-
-    });
-
-    /* فتح / إغلاق المادة التي ضغط عليها */
-
-    box.classList.toggle("open");
-
-}
-
-</script>
-
-
-
-
-
-    
-    
 
 
 <section class="card">
 
     <div class="card-title">
-        <div class="title-icon">📊</div>
-        <div>
-            <h2>إحصائياتي</h2>
-            <div class="card-subtitle">تابع تقدمك في المراجعة</div>
+
+        <div class="title-icon">
+            📊
         </div>
+
+        <div>
+
+            <h2>
+                إحصائياتي
+            </h2>
+
+            <div class="card-subtitle">
+                تابع تقدمك في المراجعة
+            </div>
+
+        </div>
+
     </div>
+
 
     <div class="stats">
 
         <div class="stat">
-            <span class="stat-number" id="todayLessons">0</span>
-            <span class="stat-label">حصص اليوم</span>
+
+            <span
+                class="stat-number"
+                id="todayLessons">
+                0
+            </span>
+
+            <span class="stat-label">
+                حصص اليوم
+            </span>
+
         </div>
 
-        <div class="stat">
-            <span class="stat-number" id="completedLessons">0</span>
-            <span class="stat-label">حصص مكتملة</span>
-        </div>
 
         <div class="stat">
-            <span class="stat-number" id="studyHours">0</span>
-            <span class="stat-label">حصص منجزة</span>
+
+            <span
+                class="stat-number"
+                id="completedLessons">
+                0
+            </span>
+
+            <span class="stat-label">
+                حصص مكتملة
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span
+                class="stat-number"
+                id="studyHours">
+                0
+            </span>
+
+            <span class="stat-label">
+                حصص منجزة
+            </span>
+
         </div>
 
     </div>
@@ -1828,40 +2681,75 @@ function toggleSubjectVideos(button){
 
 <section class="card timer">
 
-    <div class="card-title" style="justify-content:center">
+    <div
+        class="card-title"
+        style="justify-content:center">
 
-        <div class="title-icon">⏱️</div>
+        <div class="title-icon">
+            ⏱️
+        </div>
 
         <div>
-            <h2>مؤقت الدراسة</h2>
+
+            <h2>
+                مؤقت الدراسة
+            </h2>
+
             <div class="card-subtitle">
                 ركز في دراستك واترك الوقت علينا
             </div>
+
         </div>
 
     </div>
 
-    <select id="timerSelect" onchange="changeTimer()">
 
-        <option value="30">30 دقيقة</option>
-        <option value="60">60 دقيقة</option>
-        <option value="120">2 ساعة</option>
+    <select
+        id="timerSelect"
+        onchange="changeTimer()">
+
+        <option value="30">
+            30 دقيقة
+        </option>
+
+        <option value="60">
+            60 دقيقة
+        </option>
+
+        <option value="120">
+            2 ساعة
+        </option>
 
     </select>
 
-    <div class="timer-display" id="timerDisplay">
+
+    <div
+        class="timer-display"
+        id="timerDisplay">
+
         30:00
+
     </div>
+
 
     <div id="timerStatus">
         جاهز للدراسة 💪
     </div>
 
+
     <div class="timer-buttons">
 
-        <button onclick="startTimer()">▶️ بدء</button>
-        <button onclick="pauseTimer()">⏸️ إيقاف</button>
-        <button onclick="resetTimer()">🔄 إعادة</button>
+        <button onclick="startTimer()">
+            ▶️ بدء
+        </button>
+
+        <button onclick="pauseTimer()">
+            ⏸️ إيقاف
+        </button>
+
+        <button onclick="resetTimer()">
+            🔄 إعادة
+        </button>
 
     </div>
 
@@ -1872,67 +2760,108 @@ function toggleSubjectVideos(button){
 
     <div class="card-title">
 
-        <div class="title-icon">🏆</div>
+        <div class="title-icon">
+            🏆
+        </div>
 
         <div>
-            <h2>الإنجازات</h2>
+
+            <h2>
+                الإنجازات
+            </h2>
+
             <div class="card-subtitle">
                 استمر في المراجعة لفتح جميع الإنجازات
             </div>
+
         </div>
 
     </div>
 
+
     <div class="achievements">
 
-        <div class="achievement" id="achievement1">
 
-            <span class="icon">🥉</span>
+        <div
+            class="achievement"
+            id="achievement1">
 
-            <strong>البداية</strong>
+            <span class="icon">
+                🥉
+            </span>
+
+            <strong>
+                البداية
+            </strong>
 
             <br>
 
-            <small>أول حصة</small>
+            <small>
+                أول حصة
+            </small>
 
         </div>
 
 
-        <div class="achievement" id="achievement5">
+        <div
+            class="achievement"
+            id="achievement5">
 
-            <span class="icon">🥈</span>
+            <span class="icon">
+                🥈
+            </span>
 
-            <strong>المجتهد</strong>
+            <strong>
+                المجتهد
+            </strong>
 
             <br>
 
-            <small>5 حصص</small>
+            <small>
+                5 حصص
+            </small>
 
         </div>
 
 
-        <div class="achievement" id="achievement10">
+        <div
+            class="achievement"
+            id="achievement10">
 
-            <span class="icon">🥇</span>
+            <span class="icon">
+                🥇
+            </span>
 
-            <strong>المتميز</strong>
+            <strong>
+                المتميز
+            </strong>
 
             <br>
 
-            <small>10 حصص</small>
+            <small>
+                10 حصص
+            </small>
 
         </div>
 
 
-        <div class="achievement" id="achievement25">
+        <div
+            class="achievement"
+            id="achievement25">
 
-            <span class="icon">🏆</span>
+            <span class="icon">
+                🏆
+            </span>
 
-            <strong>الأسطورة</strong>
+            <strong>
+                الأسطورة
+            </strong>
 
             <br>
 
-            <small>25 حصة</small>
+            <small>
+                25 حصة
+            </small>
 
         </div>
 
@@ -1941,23 +2870,36 @@ function toggleSubjectVideos(button){
 </section>
 
 
-<section class="card" id="schedule-section">
+<section
+    class="card"
+    id="schedule-section">
 
     <div class="card-title">
 
-        <div class="title-icon">📅</div>
+        <div class="title-icon">
+            📅
+        </div>
 
         <div>
-            <h2>برنامج المراجعة الأسبوعي</h2>
+
+            <h2>
+                برنامج المراجعة الأسبوعي
+            </h2>
 
             <div class="card-subtitle">
                 يمكنك تعديل أوقات المراجعة وحفظها تلقائيًا
             </div>
+
         </div>
 
     </div>
 
-    <div class="schedule" id="schedule"></div>
+
+    <div
+        class="schedule"
+        id="schedule">
+    </div>
+
 
     <button
         class="main-button reset-all"
@@ -1970,21 +2912,30 @@ function toggleSubjectVideos(button){
 </section>
 
 
-<section class="card school-schedule" id="school-section">
+<section
+    class="card school-schedule"
+    id="school-section">
 
     <div class="card-title">
 
-        <div class="title-icon">🏫</div>
+        <div class="title-icon">
+            🏫
+        </div>
 
         <div>
-            <h2>البرنامج المدرسي</h2>
+
+            <h2>
+                البرنامج المدرسي
+            </h2>
 
             <div class="card-subtitle">
                 برنامج المدرسة الثابت
             </div>
+
         </div>
 
     </div>
+
 
     <div class="table-wrap">
 
@@ -1993,14 +2944,27 @@ function toggleSubjectVideos(button){
             <thead>
 
                 <tr>
-                    <th>اليوم</th>
-                    <th>الوقت</th>
-                    <th>المادة</th>
+
+                    <th>
+                        اليوم
+                    </th>
+
+                    <th>
+                        الوقت
+                    </th>
+
+                    <th>
+                        المادة
+                    </th>
+
                 </tr>
 
             </thead>
 
-            <tbody id="schoolScheduleBody"></tbody>
+
+            <tbody
+                id="schoolScheduleBody">
+            </tbody>
 
         </table>
 
@@ -2009,21 +2973,32 @@ function toggleSubjectVideos(button){
 </section>
 
 
-<section class="card contact-card" id="contact">
+<section
+    class="card contact-card"
+    id="contact">
 
-    <div class="card-title" style="justify-content:center">
+    <div
+        class="card-title"
+        style="justify-content:center">
 
-        <div class="title-icon">📩</div>
+        <div class="title-icon">
+            📩
+        </div>
 
         <div>
-            <h2>تواصل معي</h2>
+
+            <h2>
+                تواصل معي
+            </h2>
 
             <div class="card-subtitle">
                 للاقتراحات والأسئلة حول الموقع
             </div>
+
         </div>
 
     </div>
+
 
     <div class="contact-description">
 
@@ -2032,87 +3007,346 @@ function toggleSubjectVideos(button){
 
     </div>
 
+
     <form
         class="contact-form"
         id="contactForm"
-        action="https://formsubmit.co/ajax/a42d66ac3a3d45512c5b907c8ebcef1f"
+        action="https://formsubmit.co/ajax/your-email@example.com"
         method="POST">
-
-        <label for="visitorName">
-            👤 اسمك
-        </label>
 
         <input
             type="text"
-            id="visitorName"
             name="name"
-            placeholder="اكتب اسمك هنا"
-            maxlength="80"
-            required
-        >
+            placeholder="اسمك"
+            required>
 
-        <label for="visitorEmail">
-            📧 بريدك الإلكتروني
-        </label>
 
         <input
             type="email"
-            id="visitorEmail"
             name="email"
-            placeholder="example@gmail.com"
-            maxlength="150"
-            autocomplete="email"
-            required
-        >
+            placeholder="بريدك الإلكتروني"
+            required>
 
-        <input
-            type="hidden"
-            id="replyTo"
-            name="_replyto"
-            value=""
-        >
-
-        <label for="visitorQuestion">
-            💬 سؤالك أو اقتراحك
-        </label>
 
         <textarea
-            id="visitorQuestion"
             name="message"
-            placeholder="اكتب سؤالك أو اقتراحك هنا..."
-            maxlength="1000"
-            required
-        ></textarea>
+            placeholder="اكتب رسالتك هنا..."
+            required>
+        </textarea>
 
-        <input
-            type="hidden"
-            name="_subject"
-            value="رسالة جديدة من Learning is easy with us"
-        >
 
-        <input
-            type="hidden"
-            name="_template"
-            value="table"
-        >
-
-        <button
-            type="submit"
-            class="contact-submit"
-            id="contactSubmit">
-
-            📧 إرسال السؤال
-
+        <button type="submit">
+            📩 إرسال الرسالة
         </button>
-
-        <div
-            id="contactStatus"
-            aria-live="polite">
-        </div>
 
     </form>
 
 </section>
+
+
+</main>
+
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            © 2026 Learning is easy with us
+        </p>
+
+        <p>
+            صُمم لمساعدة طلاب السنة الأولى ثانوي تقني 📚
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+const ALGERIA_TIMEZONE =
+    "Africa/Algiers";
+
+
+/* ======================================================
+   الوضع الليلي والنهاري
+====================================================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    const isLight =
+        document.body.classList.contains("light");
+
+    localStorage.setItem(
+        "theme",
+        isLight
+            ? "light"
+            : "dark"
+    );
+
+    document.getElementById(
+        "theme-button"
+    ).textContent =
+        isLight
+            ? "☀️"
+            : "🌙";
+}
+
+
+function loadTheme(){
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
+    if(savedTheme === "light"){
+
+        document.body.classList.add("light");
+
+        document.getElementById(
+            "theme-button"
+        ).textContent =
+            "☀️";
+    }
+
+}
+
+
+/* ======================================================
+   دروس الفيديو
+====================================================== */
+
+function toggleSubjectVideos(button){
+
+    const box =
+        button.closest(
+            ".subject-video-box"
+        );
+
+    const allBoxes =
+        document.querySelectorAll(
+            ".subject-video-box"
+        );
+
+
+    allBoxes.forEach(item => {
+
+        if(item !== box){
+
+            item.classList.remove("open");
+
+        }
+
+    });
+
+
+    box.classList.toggle("open");
+
+}
+
+
+/* ======================================================
+   الجرس
+====================================================== */
+
+let audioContext = null;
+
+let bellEnabled = false;
+
+
+function enableBell(){
+
+    if(!audioContext){
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+
+    if(
+        audioContext.state ===
+        "suspended"
+    ){
+
+        audioContext.resume();
+
+    }
+
+
+    bellEnabled = true;
+
+
+    const button =
+        document.getElementById(
+            "bellButton"
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    button.textContent =
+        "🔔 الجرس مفعّل";
+
+}
+
+
+/* صوت الجرس */
+
+function playBell(){
+
+    if(!bellEnabled){
+
+        return;
+
+    }
+
+
+    if(!audioContext){
+
+        return;
+
+    }
+
+
+    if(
+        audioContext.state ===
+        "suspended"
+    ){
+
+        audioContext.resume();
+
+    }
+
+
+    const now =
+        audioContext.currentTime;
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type =
+        "sine";
+
+
+    oscillator.frequency.setValueAtTime(
+        660,
+        now
+    );
+
+    oscillator.frequency.setValueAtTime(
+        880,
+        now + 0.35
+    );
+
+
+    gain.gain.setValueAtTime(
+        0.0001,
+        now
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.5,
+        now + 0.03
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        now + 1
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start(now);
+
+    oscillator.stop(
+        now + 1
+    );
+
+
+    const button =
+        document.getElementById(
+            "bellButton"
+        );
+
+
+    button.classList.add(
+        "ringing"
+    );
+
+
+    button.textContent =
+        "🔔 الجرس يرن... اضغط لإيقافه";
+
+}
+
+
+/* ======================================================
+   تفعيل / إيقاف الجرس عند الضغط أثناء الرنين
+====================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const button =
+            document.getElementById(
+                "bellButton"
+            );
+
+
+        if(
+            button &&
+            event.target === button &&
+            button.classList.contains("ringing")
+        ){
+
+            button.classList.remove(
+                "ringing"
+            );
+
+            button.classList.add(
+                "active"
+            );
+
+            button.textContent =
+                "🔔 الجرس مفعّل";
+
+        }
+
+    }
+);
+
+
+/* ======================================================
+   بداية تشغيل الموقع
+====================================================== */
+
+loadTheme();
+
+</script>
+
+    </section>
 
 </main>
 
@@ -2215,6 +3449,7 @@ end:"22:30"
 
 ],
 
+
 "الإثنين":[
 
 {
@@ -2239,6 +3474,7 @@ end:"22:30"
 }
 
 ],
+
 
 "الثلاثاء":[
 
@@ -2265,6 +3501,7 @@ end:"22:30"
 
 ],
 
+
 "الأربعاء":[
 
 {
@@ -2290,6 +3527,7 @@ end:"22:30"
 
 ],
 
+
 "الخميس":[
 
 {
@@ -2314,6 +3552,7 @@ end:"22:30"
 }
 
 ],
+
 
 "الجمعة":[
 
@@ -2346,6 +3585,7 @@ end:"18:15"
 }
 
 ],
+
 
 "السبت":[
 
@@ -2414,6 +3654,7 @@ const schoolSchedule={
 
 ],
 
+
 "الإثنين":[
 
 ["08:00 - 09:00","📐 رياضيات"],
@@ -2425,6 +3666,7 @@ const schoolSchedule={
 
 ],
 
+
 "الثلاثاء":[
 
 ["08:00 - 09:00","🏗️ هندسة مدنية"],
@@ -2433,6 +3675,7 @@ const schoolSchedule={
 ["11:00 - 12:00","🔬 علوم طبيعية"]
 
 ],
+
 
 "الأربعاء":[
 
@@ -2445,6 +3688,7 @@ const schoolSchedule={
 ["15:30 - 16:30","🇬🇧 إنجليزية"]
 
 ],
+
 
 "الخميس":[
 
@@ -2482,6 +3726,7 @@ function formatRemaining(seconds){
 
     const secs=seconds%60;
 
+
     if(hours){
 
         return String(hours).padStart(2,"0")+":"+
@@ -2489,6 +3734,7 @@ function formatRemaining(seconds){
                String(secs).padStart(2,"0");
 
     }
+
 
     return String(minutes).padStart(2,"0")+":"+
            String(secs).padStart(2,"0");
@@ -2519,7 +3765,9 @@ function getAlgeriaTime(){
     parts.forEach(part=>{
 
         if(part.type!=="literal"){
+
             result[part.type]=part.value;
+
         }
 
     });
@@ -2590,7 +3838,9 @@ function createAudioContext(){
 
 
     if(!AudioContextClass){
+
         return null;
+
     }
 
 
@@ -2618,8 +3868,11 @@ function playSchoolBell(){
 
     const ctx=createAudioContext();
 
+
     if(!ctx){
+
         return;
+
     }
 
 
@@ -2709,12 +3962,16 @@ function playSchoolBell(){
 function startAlarm(){
 
     if(!bellEnabled){
+
         return;
+
     }
 
 
     if(alarmRinging){
+
         return;
+
     }
 
 
@@ -2722,14 +3979,18 @@ function startAlarm(){
 
 
     if(!ctx){
+
         return;
+
     }
 
 
     const begin=()=>{
 
         if(alarmRinging){
+
             return;
+
         }
 
 
@@ -2759,7 +4020,9 @@ function startAlarm(){
             setInterval(()=>{
 
                 if(!alarmRinging){
+
                     return;
+
                 }
 
                 playSchoolBell();
@@ -2782,1310 +4045,3 @@ function startAlarm(){
     }
 
 }
-
-
-function stopAlarm(){
-
-    alarmRinging=false;
-
-
-    if(schoolBellInterval){
-
-        clearInterval(
-            schoolBellInterval
-        );
-
-        schoolBellInterval=null;
-
-    }
-
-
-    const button=
-        document.getElementById("bellButton");
-
-
-    if(!button){
-        return;
-    }
-
-
-    button.classList.remove("ringing");
-
-
-    if(bellEnabled){
-
-        button.classList.add("active");
-
-        button.textContent=
-            "🔕 إيقاف الجرس";
-
-    }else{
-
-        button.classList.remove("active");
-
-        button.textContent=
-            "🔔 تفعيل الجرس";
-
-    }
-
-}
-
-
-function enableBell(){
-
-    if(alarmRinging){
-
-        stopAlarm();
-
-        return;
-
-    }
-
-
-    const ctx=createAudioContext();
-
-
-    if(!ctx){
-
-        alert(
-            "متصفحك لا يدعم تشغيل الجرس."
-        );
-
-        return;
-
-    }
-
-
-    if(ctx.state==="suspended"){
-
-        ctx.resume().catch(()=>{});
-
-    }
-
-
-    bellEnabled=!bellEnabled;
-
-
-    localStorage.setItem(
-        "studyBellEnabled",
-        String(bellEnabled)
-    );
-
-
-    const button=
-        document.getElementById("bellButton");
-
-
-    if(bellEnabled){
-
-        button.classList.add("active");
-
-        button.textContent=
-            "🔕 إيقاف الجرس";
-
-
-        setTimeout(()=>{
-
-            playSchoolBell();
-
-        },100);
-
-    }else{
-
-        stopAlarm();
-
-    }
-
-}
-
-
-function loadBellState(){
-
-    const button=
-        document.getElementById("bellButton");
-
-
-    if(!button){
-        return;
-    }
-
-
-    if(bellEnabled){
-
-        button.classList.add("active");
-
-        button.textContent=
-            "🔕 إيقاف الجرس";
-
-    }else{
-
-        button.classList.remove("active");
-
-        button.textContent=
-            "🔔 تفعيل الجرس";
-
-    }
-
-}
-
-
-/* =========================================================
-   الحصة الحالية
-========================================================= */
-
-let lastStartBell="";
-
-let lastEndBell="";
-
-
-function updateCurrentLesson(){
-
-    const now=getAlgeriaTime();
-
-
-    const day=arabicDays[now.weekday];
-
-
-    const currentSeconds=
-        now.hour*3600+
-        now.minute*60+
-        now.second;
-
-
-    const lessons=schedule[day]||[];
-
-
-    const sortedLessons=[...lessons].sort(
-
-        (a,b)=>
-            timeToMinutes(a.start)-
-            timeToMinutes(b.start)
-
-    );
-
-
-    let currentLesson=null;
-
-    let nextLesson=null;
-
-
-    for(const lesson of sortedLessons){
-
-        const startSeconds=
-            timeToMinutes(lesson.start)*60;
-
-
-        const endSeconds=
-            timeToMinutes(lesson.end)*60;
-
-
-        if(
-            currentSeconds>=startSeconds&&
-            currentSeconds<endSeconds
-        ){
-
-            currentLesson=lesson;
-
-            break;
-
-        }
-
-
-        if(
-            startSeconds>currentSeconds&&
-            !nextLesson
-        ){
-
-            nextLesson=lesson;
-
-        }
-
-    }
-
-
-    const container=
-        document.getElementById("currentLesson");
-
-
-    if(currentLesson){
-
-        const startSeconds=
-            timeToMinutes(currentLesson.start)*60;
-
-
-        const endSeconds=
-            timeToMinutes(currentLesson.end)*60;
-
-
-        const remaining=
-            endSeconds-currentSeconds;
-
-
-        container.innerHTML=`
-
-            <div class="lesson-status">
-                🔴 الحصة جارية الآن
-            </div>
-
-            <div class="current-subject">
-                ${currentLesson.subject}
-            </div>
-
-            <div class="current-time">
-                ${currentLesson.start} → ${currentLesson.end}
-            </div>
-
-            <div class="school-timer">
-
-                <div class="school-timer-label">
-                    ⏳ الوقت المتبقي لإكمال الحصة
-                </div>
-
-                <div class="school-timer-display">
-                    ${formatRemaining(remaining)}
-                </div>
-
-            </div>
-
-        `;
-
-
-        const lessonKey=
-            day+"-"+
-            (currentLesson.id||currentLesson.subject)+
-            "-"+
-            currentLesson.start;
-
-
-        if(
-            currentSeconds>=startSeconds&&
-            currentSeconds<=startSeconds+3&&
-            lastStartBell!==lessonKey
-        ){
-
-            lastStartBell=lessonKey;
-
-            if(bellEnabled){
-                startAlarm();
-            }
-
-        }
-
-
-        if(
-            remaining<=3&&
-            remaining>=0&&
-            lastEndBell!==lessonKey
-        ){
-
-            lastEndBell=lessonKey;
-
-            if(bellEnabled){
-                startAlarm();
-            }
-
-        }
-
-
-        return;
-
-    }
-
-
-    if(nextLesson){
-
-        const startSeconds=
-            timeToMinutes(nextLesson.start)*60;
-
-
-        const secondsUntil=
-            startSeconds-currentSeconds;
-
-
-        container.innerHTML=`
-
-            <div class="lesson-status">
-                ⏳ الحصة القادمة
-            </div>
-
-            <div class="current-subject">
-                ${nextLesson.subject}
-            </div>
-
-            <div class="current-time">
-                تبدأ الساعة ${nextLesson.start}
-                وتنتهي الساعة ${nextLesson.end}
-            </div>
-
-            <div class="school-timer">
-
-                <div class="school-timer-label">
-                    ⏰ تبدأ بعد
-                </div>
-
-                <div class="school-timer-display">
-                    ${formatRemaining(secondsUntil)}
-                </div>
-
-            </div>
-
-        `;
-
-
-        return;
-
-    }
-
-
-    if(!lessons.length){
-
-        container.innerHTML=`
-
-            <div class="lesson-status">
-                💤 لا توجد حصص مراجعة اليوم
-            </div>
-
-            <div class="current-subject">
-                استمتع بوقتك 💙
-            </div>
-
-            <div class="current-time">
-                لا توجد مادة مبرمجة لهذا اليوم.
-            </div>
-
-        `;
-
-
-        return;
-
-    }
-
-
-    container.innerHTML=`
-
-        <div class="lesson-status">
-            ✅ انتهت حصص اليوم
-        </div>
-
-        <div class="current-subject">
-            أحسنت! 🎉
-        </div>
-
-        <div class="current-time">
-            يمكنك الآن الراحة أو المراجعة.
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   برنامج المراجعة
-========================================================= */
-
-function renderSchedule(){
-
-    const container=
-        document.getElementById("schedule");
-
-
-    container.innerHTML="";
-
-
-    Object.keys(schedule).forEach(day=>{
-
-        const dayCard=
-            document.createElement("div");
-
-
-        dayCard.className="day-card";
-
-
-        dayCard.innerHTML=
-            `<div class="day-title">
-                <span>${day}</span>
-                <span>📚</span>
-            </div>`;
-
-
-        schedule[day].forEach(lesson=>{
-
-            const completed=
-                localStorage.getItem(
-                    `completed-${lesson.id}`
-                )==="true";
-
-
-            const lessonDiv=
-                document.createElement("div");
-
-
-            lessonDiv.className=
-                "lesson"+
-                (completed?" completed":"");
-
-
-            lessonDiv.innerHTML=`
-
-                <div class="lesson-info">
-
-                    <div>${lesson.subject}</div>
-
-                    <div class="lesson-time">
-                        ${lesson.start} → ${lesson.end}
-                    </div>
-
-                </div>
-
-                <button
-                    title="إنجاز"
-                    onclick="toggleComplete('${lesson.id}')">
-
-                    ${completed?"↩️":"✅"}
-
-                </button>
-
-                <button
-                    title="تعديل"
-                    onclick="openEdit('${day}','${lesson.id}')">
-
-                    ✏️
-
-                </button>
-
-                <button
-                    class="restore"
-                    title="إرجاع الوقت الأصلي"
-                    onclick="restoreLesson('${day}','${lesson.id}')">
-
-                    ↩️
-
-                </button>
-
-            `;
-
-
-            dayCard.appendChild(lessonDiv);
-
-        });
-
-
-        container.appendChild(dayCard);
-
-    });
-
-
-    updateStats();
-
-    updateCurrentLesson();
-
-}
-
-
-function toggleComplete(id){
-
-    const key=`completed-${id}`;
-
-
-    const current=
-        localStorage.getItem(key)==="true";
-
-
-    localStorage.setItem(
-        key,
-        String(!current)
-    );
-
-
-    renderSchedule();
-
-}
-
-
-function updateStats(){
-
-    const allLessons=
-        Object.values(schedule).flat();
-
-
-    const completed=
-        allLessons.filter(
-            lesson=>
-                localStorage.getItem(
-                    `completed-${lesson.id}`
-                )==="true"
-        ).length;
-
-
-    document.getElementById(
-        "completedLessons"
-    ).textContent=completed;
-
-
-    const now=getAlgeriaTime();
-
-
-    const today=arabicDays[now.weekday];
-
-
-    const todayLessons=
-        schedule[today]||[];
-
-
-    document.getElementById(
-        "todayLessons"
-    ).textContent=
-        todayLessons.length;
-
-
-    document.getElementById(
-        "studyHours"
-    ).textContent=
-        completed;
-
-
-    const achievements=[
-
-        ["achievement1",1],
-        ["achievement5",5],
-        ["achievement10",10],
-        ["achievement25",25]
-
-    ];
-
-
-    achievements.forEach(item=>{
-
-        const element=
-            document.getElementById(item[0]);
-
-
-        if(element){
-
-            element.classList.toggle(
-                "unlocked",
-                completed>=item[1]
-            );
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   تعديل الحصص
-========================================================= */
-
-let editingDay=null;
-
-let editingId=null;
-
-
-function openEdit(day,id){
-
-    const lesson=
-        schedule[day].find(
-            item=>item.id===id
-        );
-
-
-    if(!lesson)return;
-
-
-    editingDay=day;
-
-    editingId=id;
-
-
-    document.getElementById("editDay").value=day;
-
-
-    document.getElementById("editStart").value=
-        lesson.start;
-
-
-    document.getElementById("editEnd").value=
-        lesson.end;
-
-
-    document.getElementById("editModal").style.display=
-        "flex";
-
-}
-
-
-function closeModal(){
-
-    document.getElementById("editModal").style.display=
-        "none";
-
-
-    editingDay=null;
-
-    editingId=null;
-
-}
-
-
-function saveEdit(){
-
-    if(!editingDay||!editingId)return;
-
-
-    const start=
-        document.getElementById("editStart").value;
-
-
-    const end=
-        document.getElementById("editEnd").value;
-
-
-    if(!start||!end){
-
-        alert(
-            "اختر وقت البداية والنهاية."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        timeToMinutes(start)>=
-        timeToMinutes(end)
-    ){
-
-        alert(
-            "وقت النهاية يجب أن يكون بعد وقت البداية."
-        );
-
-        return;
-
-    }
-
-
-    const lesson=
-        schedule[editingDay].find(
-            item=>item.id===editingId
-        );
-
-
-    if(lesson){
-
-        lesson.start=start;
-
-        lesson.end=end;
-
-    }
-
-
-    localStorage.setItem(
-        "myStudySchedule",
-        JSON.stringify(schedule)
-    );
-
-
-    closeModal();
-
-    renderSchedule();
-
-}
-
-
-function restoreLesson(day,id){
-
-    const original=
-        originalSchedule[day].find(
-            item=>item.id===id
-        );
-
-
-    const current=
-        schedule[day].find(
-            item=>item.id===id
-        );
-
-
-    if(!original||!current)return;
-
-
-    current.start=original.start;
-
-    current.end=original.end;
-
-
-    localStorage.setItem(
-        "myStudySchedule",
-        JSON.stringify(schedule)
-    );
-
-
-    renderSchedule();
-
-}
-
-
-function resetAllSchedule(){
-
-    if(!confirm(
-        "هل تريد إعادة برنامج المراجعة الأصلي بالكامل؟"
-    )){
-
-        return;
-
-    }
-
-
-    schedule=
-        JSON.parse(
-            JSON.stringify(originalSchedule)
-        );
-
-
-    localStorage.setItem(
-        "myStudySchedule",
-        JSON.stringify(schedule)
-    );
-
-
-    renderSchedule();
-
-
-    alert(
-        "تمت إعادة البرنامج الأصلي ✅"
-    );
-
-}
-
-
-/* =========================================================
-   الوضع الليلي / النهاري
-========================================================= */
-
-function toggleTheme(){
-
-    document.body.classList.toggle("light");
-
-
-    const light=
-        document.body.classList.contains("light");
-
-
-    localStorage.setItem(
-        "studyTheme",
-        light?"light":"dark"
-    );
-
-
-    document.getElementById(
-        "theme-button"
-    ).textContent=
-        light?"☀️":"🌙";
-
-}
-
-
-function loadTheme(){
-
-    const light=
-        localStorage.getItem("studyTheme")==="light";
-
-
-    document.body.classList.toggle(
-        "light",
-        light
-    );
-
-
-    document.getElementById(
-        "theme-button"
-    ).textContent=
-        light?"☀️":"🌙";
-
-}
-
-
-/* =========================================================
-   مؤقت الدراسة
-========================================================= */
-
-let timerSeconds=30*60;
-
-let timerInterval=null;
-
-let timerRunning=false;
-
-
-function formatTimer(seconds){
-
-    const minutes=
-        Math.floor(seconds/60);
-
-
-    const secs=
-        seconds%60;
-
-
-    return String(minutes).padStart(2,"0")+
-        ":"+
-        String(secs).padStart(2,"0");
-
-}
-
-
-function updateTimerDisplay(){
-
-    document.getElementById(
-        "timerDisplay"
-    ).textContent=
-        formatTimer(timerSeconds);
-
-}
-
-
-function changeTimer(){
-
-    if(timerRunning)return;
-
-
-    const minutes=
-        Number(
-            document.getElementById(
-                "timerSelect"
-            ).value
-        );
-
-
-    timerSeconds=minutes*60;
-
-
-    document.getElementById(
-        "timerStatus"
-    ).textContent=
-        "جاهز للدراسة 💪";
-
-
-    updateTimerDisplay();
-
-}
-
-
-function startTimer(){
-
-    if(timerRunning)return;
-
-
-    createAudioContext();
-
-
-    timerRunning=true;
-
-
-    document.getElementById(
-        "timerStatus"
-    ).textContent=
-        "📚 وقت الدراسة الآن...";
-
-
-    timerInterval=
-        setInterval(()=>{
-
-            if(timerSeconds>0){
-
-                timerSeconds--;
-
-                updateTimerDisplay();
-
-            }else{
-
-                finishTimer();
-
-            }
-
-        },1000);
-
-}
-
-
-function pauseTimer(){
-
-    if(!timerRunning)return;
-
-
-    clearInterval(timerInterval);
-
-
-    timerInterval=null;
-
-    timerRunning=false;
-
-
-    document.getElementById(
-        "timerStatus"
-    ).textContent=
-        "⏸️ تم إيقاف المؤقت مؤقتًا";
-
-}
-
-
-function resetTimer(){
-
-    clearInterval(timerInterval);
-
-
-    timerInterval=null;
-
-    timerRunning=false;
-
-
-    const minutes=
-        Number(
-            document.getElementById(
-                "timerSelect"
-            ).value
-        );
-
-
-    timerSeconds=minutes*60;
-
-
-    document.getElementById(
-        "timerStatus"
-    ).textContent=
-        "جاهز للدراسة 💪";
-
-
-    updateTimerDisplay();
-
-}
-
-
-function finishTimer(){
-
-    clearInterval(timerInterval);
-
-
-    timerInterval=null;
-
-    timerRunning=false;
-
-    timerSeconds=0;
-
-
-    updateTimerDisplay();
-
-
-    document.getElementById(
-        "timerStatus"
-    ).textContent=
-        "🎉 انتهى وقت الدراسة!";
-
-
-    if(bellEnabled){
-
-        startAlarm();
-
-    }else{
-
-        alert(
-            "🎉 انتهى وقت الدراسة! أحسنت."
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   برنامج المدرسة
-========================================================= */
-
-function renderSchoolSchedule(){
-
-    const body=
-        document.getElementById(
-            "schoolScheduleBody"
-        );
-
-
-    body.innerHTML="";
-
-
-    Object.entries(
-        schoolSchedule
-    ).forEach(([day,items])=>{
-
-        items.forEach((item,index)=>{
-
-            const row=
-                document.createElement("tr");
-
-
-            if(index===0){
-
-                const dayCell=
-                    document.createElement("td");
-
-
-                dayCell.rowSpan=
-                    items.length;
-
-
-                dayCell.textContent=day;
-
-
-                row.appendChild(dayCell);
-
-            }
-
-
-            row.innerHTML+=`
-
-                <td>${item[0]}</td>
-                <td>${item[1]}</td>
-
-            `;
-
-
-            body.appendChild(row);
-
-        });
-
-    });
-
-}
-
-
-/* =========================================================
-   نموذج التواصل
-========================================================= */
-
-const contactForm=
-    document.getElementById("contactForm");
-
-
-const contactSubmit=
-    document.getElementById("contactSubmit");
-
-
-const contactStatus=
-    document.getElementById("contactStatus");
-
-
-contactForm.addEventListener(
-
-    "submit",
-
-    async event=>{
-
-        event.preventDefault();
-
-
-        const name=
-            document.getElementById(
-                "visitorName"
-            ).value.trim();
-
-
-        const email=
-            document.getElementById(
-                "visitorEmail"
-            ).value.trim();
-
-
-        const message=
-            document.getElementById(
-                "visitorQuestion"
-            ).value.trim();
-
-
-        if(!name||!email||!message){
-
-            contactStatus.textContent=
-                "⚠️ اكتب اسمك وبريدك الإلكتروني وسؤالك أو اقتراحك أولاً.";
-
-
-            contactStatus.className=
-                "contact-error";
-
-
-            return;
-
-        }
-
-
-        const emailPattern=
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-        if(!emailPattern.test(email)){
-
-            contactStatus.textContent=
-                "⚠️ أدخل بريدًا إلكترونيًا صحيحًا.";
-
-
-            contactStatus.className=
-                "contact-error";
-
-
-            return;
-
-        }
-
-
-        document.getElementById(
-            "replyTo"
-        ).value=email;
-
-
-        contactSubmit.disabled=true;
-
-
-        contactSubmit.textContent=
-            "⏳ جارٍ إرسال السؤال...";
-
-
-        contactStatus.textContent="";
-
-
-        try{
-
-            const response=
-                await fetch(
-
-                    contactForm.action,
-
-                    {
-
-                        method:"POST",
-
-                        headers:{
-                            "Accept":
-                                "application/json"
-                        },
-
-                        body:
-                            new FormData(
-                                contactForm
-                            )
-
-                    }
-
-                );
-
-
-            const data=
-                await response.json()
-                .catch(()=>({}));
-
-
-            if(
-                !response.ok||
-                data.success===false
-            ){
-
-                throw new Error(
-                    "Send failed"
-                );
-
-            }
-
-
-            contactStatus.textContent=
-                "✅ تم إرسال سؤالك بنجاح! شكرًا لك.";
-
-
-            contactStatus.className=
-                "contact-success";
-
-
-            contactForm.reset();
-
-
-        }catch(error){
-
-            contactStatus.textContent=
-                "❌ لم يتم الإرسال. تأكد من تفعيل FormSubmit من الرسالة التي وصلتك إلى Gmail.";
-
-
-            contactStatus.className=
-                "contact-error";
-
-        }
-
-
-        contactSubmit.disabled=false;
-
-
-        contactSubmit.textContent=
-            "📧 إرسال السؤال";
-
-    }
-
-);
-
-
-/* =========================================================
-   النافذة
-========================================================= */
-
-document.getElementById(
-    "editModal"
-).addEventListener(
-
-    "click",
-
-    event=>{
-
-        if(
-            event.target===
-            event.currentTarget
-        ){
-
-            closeModal();
-
-        }
-
-    }
-
-);
-
-
-/* =========================================================
-   تشغيل الموقع
-========================================================= */
-
-loadTheme();
-
-loadBellState();
-
-renderSchedule();
-
-renderSchoolSchedule();
-
-updateClock();
-
-updateCurrentLesson();
-
-updateTimerDisplay();
-
-
-setInterval(()=>{
-
-    updateClock();
-
-    updateCurrentLesson();
-
-    updateStats();
-
-},1000);
-
-</script>
-
-</body>
-</html>
-
