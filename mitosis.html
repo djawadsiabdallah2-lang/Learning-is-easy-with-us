@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="درس تفاعلي حول الانقسام الخيطي المتساوي ومراحله">
+<title>الانقسام الخيطي المتساوي | Learning is easy with us</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#07111f;
+  --bg2:#0b1728;
+  --card:#0e2035;
+  --card2:#102a44;
+  --blue:#078cff;
+  --cyan:#35d6ff;
+  --purple:#a78bfa;
+  --green:#20d69a;
+  --red:#ff647c;
+  --text:#edf6ff;
+  --muted:#a7bed4;
+  --border:rgba(53,214,255,.2);
+  --shadow:0 12px 35px rgba(0,0,0,.2);
+}
+body.light {
+  --bg:#eef5fb;
+  --bg2:#f7fbff;
+  --card:#fff;
+  --card2:#e9f4ff;
+  --text:#14263b;
+  --muted:#536a80;
+  --border:rgba(0,130,220,.22);
+  --shadow:0 12px 35px rgba(25,80,120,.09);
+}
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  background:radial-gradient(ellipse at top,#0c2b4b 0%,var(--bg) 60%);
+  color:var(--text);
+  font-family:'Tajawal',Arial,sans-serif;
+  line-height:1.8;
+  min-height:100vh;
+  transition:background .25s,color .25s;
+}
+body.light {background:linear-gradient(140deg,#e9f5ff,#f8fbff)}
+button,a {font:inherit}
+button {cursor:pointer}
+a {color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible {
+  outline:3px solid var(--cyan);
+  outline-offset:4px;
+}
+.container {width:min(1120px,92%);margin:auto}
+header {
+  position:sticky;top:0;z-index:20;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+.nav {
+  min-height:66px;display:flex;align-items:center;
+  justify-content:space-between;gap:14px;flex-wrap:wrap;padding:10px 0;
+}
+.brand {font-size:18px;font-weight:900;direction:ltr}
+.brand span {color:var(--cyan)}
+.nav-actions {display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.nav-btn,.icon-btn {
+  border:1px solid var(--border);background:var(--card);
+  color:var(--text);border-radius:12px;padding:8px 13px;
+}
+.nav-btn:hover,.icon-btn:hover {border-color:var(--cyan)}
+.hero {
+  padding:48px 0 30px;
+  display:grid;grid-template-columns:1.5fr .8fr;
+  gap:22px;align-items:center;
+}
+.eyebrow {
+  display:inline-block;padding:5px 13px;border-radius:30px;
+  border:1px solid var(--border);color:var(--cyan);
+  background:rgba(0,145,255,.08);font-weight:800;font-size:14px;
+}
+h1 {font-size:clamp(30px,4.4vw,49px);line-height:1.35;margin:13px 0}
+.gradient {
+  background:linear-gradient(90deg,var(--cyan),#788dff);
+  color:transparent;background-clip:text;-webkit-background-clip:text;
+}
+.hero p {font-size:17px;color:var(--muted);max-width:690px}
+.hero-info {
+  padding:19px;border:1px solid var(--border);border-radius:20px;
+  background:var(--card);box-shadow:var(--shadow);
+}
+.hero-info div {display:flex;justify-content:space-between;gap:10px;padding:7px 0}
+.hero-info span {color:var(--muted)}
+.panel {
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:22px;margin:0 0 20px;
+  box-shadow:var(--shadow);
+}
+.section-heading {
+  font-size:22px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:17px;
+}
+.section-heading span {color:var(--cyan)}
+.stage-tabs {
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;margin-bottom:17px;
+}
+.stage-tab {
+  border:1px solid var(--border);border-radius:12px;
+  background:var(--bg2);color:var(--text);
+  padding:12px 7px;font-weight:800;transition:.2s;
+}
+.stage-tab:hover {border-color:var(--cyan)}
+.stage-tab.active {
+  color:white;background:linear-gradient(120deg,#078cff,#0757e9);
+  border-color:transparent;
+}
+.stage-layout {
+  display:grid;grid-template-columns:1.15fr .85fr;gap:16px;
+}
+.cell-display {
+  border:1px solid var(--border);border-radius:17px;
+  min-height:310px;padding:12px;
+  background:radial-gradient(ellipse at center,rgba(0,145,255,.13),transparent 70%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.cell-display svg {width:100%;max-width:440px;height:auto;max-height:285px}
+.cell-caption {color:var(--muted);font-weight:800;margin-top:4px}
+.stage-info {
+  padding:20px;border:1px solid var(--border);
+  border-radius:17px;display:flex;flex-direction:column;justify-content:center;
+}
+.stage-info h3 {font-size:24px;margin-bottom:10px}
+.stage-info p {color:var(--muted);font-size:17px}
+.fact {
+  border:1px solid var(--border);background:var(--bg2);
+  padding:13px;border-radius:13px;margin-top:17px;
+}
+.fact strong {color:var(--cyan);display:block;margin-bottom:4px}
+.stage-controls {display:flex;gap:10px;margin-top:15px}
+.action-btn {
+  border:0;border-radius:12px;padding:11px 17px;
+  background:linear-gradient(120deg,#0ba8f5,#0757e9);
+  color:#fff;font-weight:800;flex:1;
+}
+.action-btn.secondary {
+  background:var(--card2);color:var(--text);
+  border:1px solid var(--border);
+}
+.action-btn:hover {filter:brightness(1.12)}
+.two-columns {display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.list {list-style:none;display:grid;gap:9px}
+.list li {display:flex;gap:10px;align-items:flex-start;color:var(--muted)}
+.list li::before {content:"✓";color:var(--green);font-weight:900}
+.notice {
+  border-right:4px solid var(--cyan);
+  background:var(--bg2);padding:13px 15px;
+  border-radius:10px;color:var(--muted);margin-top:14px;
+}
+.table-wrap {overflow-x:auto}
+table {border-collapse:collapse;width:100%;min-width:480px}
+th,td {border:1px solid var(--border);padding:12px;text-align:right}
+th {background:var(--card2);color:var(--cyan)}
+td {color:var(--muted)}
+.quiz-question {
+  background:var(--bg2);border:1px solid var(--border);
+  padding:17px;border-radius:15px;margin-bottom:13px;
+}
+.quiz-question h3 {font-size:18px;margin-bottom:12px}
+.options {display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.option {
+  background:var(--card);color:var(--text);
+  border:1px solid var(--border);border-radius:11px;
+  padding:10px;text-align:right;
+}
+.option:hover {border-color:var(--cyan)}
+.option.selected {border-color:var(--blue);background:rgba(0,140,255,.13)}
+.option.correct {border-color:var(--green);background:rgba(32,214,154,.1)}
+.option.wrong {border-color:var(--red);background:rgba(255,100,124,.1)}
+.feedback {font-weight:800;margin-top:9px;min-height:26px}
+.quiz-bottom {display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:15px}
+#score {font-weight:900;color:var(--cyan)}
+footer {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;flex-wrap:wrap;padding:25px 0 35px;color:var(--muted);
+}
+.back-link {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border:1px solid var(--border);
+  border-radius:30px;color:var(--text);
+}
+.back-link:hover {border-color:var(--cyan)}
+@media(max-width:760px) {
+  .hero,.stage-layout,.two-columns {grid-template-columns:1fr}
+  .hero {padding-top:30px}
+  .stage-tabs {grid-template-columns:1fr 1fr}
+  .stage-info {order:-1}
+  .panel {padding:15px}
+  .section-heading {font-size:20px}
+}
+@media(max-width:430px) {
+  .options {grid-template-columns:1fr}
+  .brand {font-size:16px}
+  .nav-btn {padding:7px 9px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="العودة إلى الموقع الرئيسي">
+      🎓 Learning is easy <span>with us</span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-btn" href="index.html">🏠 الرئيسية</a>
+      <a class="nav-btn" href="#lesson">📚 الدرس</a>
+      <a class="nav-btn" href="#quiz">📝 الاختبار</a>
+      <button class="icon-btn" id="themeButton" type="button" aria-label="تغيير المظهر">☀️</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">🧬 علوم الطبيعة والحياة</span>
+      <h1>الانقسام <span class="gradient">الخيطي المتساوي</span></h1>
+      <p>
+        اكتشف كيف تنقسم الخلية لتكوين خليتين بنتين، وتعرّف على
+        مراحل الانقسام الخيطي المتساوي من خلال درس تفاعلي واختبر معلوماتك.
+      </p>
+    </div>
+    <div class="hero-info">
+      <div><strong>🎓 المستوى</strong><span>السنة الأولى ثانوي</span></div>
+      <div><strong>📘 المادة</strong><span>علوم الطبيعة والحياة</span></div>
+      <div><strong>🔬 النشاط</strong><span>شرح وتطبيق واختبار</span></div>
+    </div>
+  </section>
+
+  <section class="panel" id="lesson">
+    <h2 class="section-heading">
+      <span>⚛️</span> المراحل الرئيسية للانقسام الخيطي المتساوي
+    </h2>
+
+    <div class="stage-tabs" role="group" aria-label="اختر مرحلة الانقسام">
+      <button class="stage-tab active" type="button" data-stage="0" aria-pressed="true">1. الطور التمهيدي</button>
+      <button class="stage-tab" type="button" data-stage="1" aria-pressed="false">2. الطور الاستوائي</button>
+      <button class="stage-tab" type="button" data-stage="2" aria-pressed="false">3. الطور الانفصالي</button>
+      <button class="stage-tab" type="button" data-stage="3" aria-pressed="false">4. الطور النهائي</button>
+    </div>
+
+    <div class="stage-layout">
+      <div class="cell-display">
+        <svg id="cellSvg" viewBox="0 0 400 270" role="img" aria-label="رسم توضيحي للخلية في الطور التمهيدي">
+          <defs>
+            <radialGradient id="cellFill" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#69d9ff" stop-opacity=".4"/>
+              <stop offset="100%" stop-color="#0877db" stop-opacity=".12"/>
+            </radialGradient>
+            <radialGradient id="nucleusFill" cx="35%" cy="25%" r="80%">
+              <stop offset="0%" stop-color="#bd9bff" stop-opacity=".65"/>
+              <stop offset="100%" stop-color="#6146d8" stop-opacity=".3"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2.3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g id="cellDrawing"></g>
+        </svg>
+        <div class="cell-caption" id="cellCaption">الطور التمهيدي</div>
+      </div>
+
+      <div class="stage-info">
+        <h3 id="stageTitle">1. الطور التمهيدي</h3>
+        <p id="stageDescription">
+          تتكثف الصبغيات وتصبح أكثر وضوحًا، ويبدأ تشكل جهاز المغزل.
+          يتفكك الغلاف النووي خلال هذه المرحلة في الخلايا التي يحدث فيها ذلك.
+        </p>
+        <div class="fact">
+          <strong>💡 ماذا يحدث في هذا الطور؟</strong>
+          <p id="stageFact">تبدأ الصبغيات بالظهور بوضوح استعدادًا لتوزيعها.</p>
+        </div>
+        <div class="stage-controls">
+          <button class="action-btn secondary" id="previousStage" type="button">→ السابق</button>
+          <button class="action-btn" id="nextStage" type="button">التالي ←</button>
+        </div>
+      </div>
+    </div>
+    <p class="notice">
+      ملاحظة علمية: الطور البيني يسبق الانقسام الخيطي، وفيه تنمو الخلية
+      وتتضاعف مادتها الوراثية. وهو ليس أحد الأطوار الأربعة للانقسام الخيطي.
+      الرسوم هنا توضيحية مبسطة.
+    </p>
+  </section>
+
+  <div class="two-columns">
+    <section class="panel">
+      <h2 class="section-heading"><span>🎯</span> أهمية الانقسام الخيطي</h2>
+      <ul class="list">
+        <li>يساهم في نمو الكائن الحي.</li>
+        <li>يساعد على تعويض الخلايا التالفة والميتة.</li>
+        <li>يساهم في تجديد الأنسجة.</li>
+        <li>يحافظ عادةً على عدد الصبغيات نفسه في الخليتين البنتين.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2 class="section-heading"><span>📋</span> ملخص الدرس</h2>
+      <ul class="list">
+        <li>تتكثف الصبغيات في الطور التمهيدي.</li>
+        <li>تصطف الصبغيات في المستوى الاستوائي في الطور الاستوائي.</li>
+        <li>تنفصل الكروماتيدات الشقيقة في الطور الانفصالي.</li>
+        <li>تتشكل نواتان بنتان في الطور النهائي، ثم ينقسم السيتوبلازم عادةً.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2 class="section-heading"><span>📊</span> جدول مراجعة الأطوار</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>الطور</th><th>أهم الأحداث</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>التمهيدي</td><td>تكثف الصبغيات وبداية تشكل جهاز المغزل.</td></tr>
+          <tr><td>الاستوائي</td><td>اصطفاف الصبغيات عند المستوى الاستوائي للخلية.</td></tr>
+          <tr><td>الانفصالي</td><td>انفصال الكروماتيدات الشقيقة واتجاهها نحو القطبين.</td></tr>
+          <tr><td>النهائي</td><td>تتشكل نواتان بنتان، ويحدث انقسام السيتوبلازم عادةً.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" id="quiz">
+    <h2 class="section-heading"><span>🧠</span> اختبر نفسك</h2>
+    <p style="color:var(--muted);margin-bottom:17px">
+      اختر إجابة واحدة لكل سؤال، ثم اضغط على زر التصحيح لمعرفة نتيجتك.
+    </p>
+
+    <div id="quizQuestions"></div>
+
+    <div class="quiz-bottom">
+      <button class="action-btn" id="checkQuiz" type="button">✅ تصحيح الإجابات</button>
+      <button class="action-btn secondary" id="resetQuiz" type="button">🔄 إعادة الاختبار</button>
+      <span id="score" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <footer>
+    <a class="back-link" href="index.html">→ العودة إلى الموقع الرئيسي</a>
+    <span>💙 Learning is easy with us</span>
+  </footer>
+</main>
+
+<script>
+"use strict";
+
+/* ==========================================
+   مراحل الانقسام الخيطي المتساوي
+========================================== */
+
+const stages = [
+  {
+    name:"الطور التمهيدي",
+    description:"تتكثف الصبغيات وتصبح أكثر وضوحًا، ويبدأ تشكل جهاز المغزل. يتفكك الغلاف النووي خلال هذه المرحلة في الخلايا التي يحدث فيها ذلك.",
+    fact:"تبدأ الصبغيات بالظهور بوضوح استعدادًا لتوزيعها.",
+    caption:"الطور التمهيدي"
+  },
+  {
+    name:"الطور الاستوائي",
+    description:"تصطف الصبغيات عند المستوى الاستوائي للخلية، وترتبط ألياف جهاز المغزل بها تمهيدًا لفصل الكروماتيدات الشقيقة.",
+    fact:"تصطف الصبغيات في منتصف الخلية.",
+    caption:"الطور الاستوائي"
+  },
+  {
+    name:"الطور الانفصالي",
+    description:"تنفصل الكروماتيدات الشقيقة عن بعضها وتتجه نحو قطبي الخلية المتعاكسين بفعل جهاز المغزل.",
+    fact:"تتجه مجموعتان من الصبغيات نحو قطبي الخلية.",
+    caption:"الطور الانفصالي"
+  },
+  {
+    name:"الطور النهائي",
+    description:"تصل مجموعتا الصبغيات إلى القطبين، وتتشكل نواتان بنتان. ثم ينقسم السيتوبلازم عادةً لتتكون خليتان بنتان.",
+    fact:"تتكون نواتان بنتان وتكتمل عملية الانقسام الخلوي.",
+    caption:"الطور النهائي"
+  }
+];
+
+let currentStage = 0;
+
+const stageTitle = document.getElementById("stageTitle");
+const stageDescription = document.getElementById("stageDescription");
+const stageFact = document.getElementById("stageFact");
+const cellCaption = document.getElementById("cellCaption");
+const cellDrawing = document.getElementById("cellDrawing");
+const stageButtons = [...document.querySelectorAll(".stage-tab")];
+
+/* ==========================================
+   رسم الخلية بشكل مبسط باستخدام SVG
+========================================== */
+
+function svgElement(tag, attributes = {}) {
+  const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  Object.entries(attributes).forEach(([key, value]) => {
+    element.setAttribute(key, String(value));
+  });
+  return element;
+}
+
+function addShape(parent, tag, attributes) {
+  const shape = svgElement(tag, attributes);
+  parent.appendChild(shape);
+  return shape;
+}
+
+function drawChromosome(parent, x, y, scale = 1, color = "#b58cff") {
+  const group = addShape(parent, "g", {
+    transform:`translate(${x} ${y}) scale(${scale})`,
+    filter:"url(#glow)"
+  });
+
+  addShape(group, "path", {
+    d:"M -9 -16 C -16 -8,-2 0,0 0 C 2 0,16 8,9 16 M 9 -16 C 16 -8,2 0,0 0 C -2 0,-16 8,-9 16",
+    fill:"none",
+    stroke:color,
+    "stroke-width":6,
+    "stroke-linecap":"round"
+  });
+
+  addShape(group, "path", {
+    d:"M -9 -16 C -16 -8,-2 0,0 0 C 2 0,16 8,9 16 M 9 -16 C 16 -8,2 0,0 0 C -2 0,-16 8,-9 16",
+    fill:"none",
+    stroke:"#e0d2ff",
+    "stroke-width":1.4,
+    "stroke-linecap":"round",
+    opacity:.85
+  });
+}
+
+function drawChromatid(parent, x, y, direction = 1, color = "#b58cff") {
+  const group = addShape(parent, "g", {
+    transform:`translate(${x} ${y}) rotate(${direction * 18})`,
+    filter:"url(#glow)"
+  });
+
+  addShape(group, "path", {
+    d:"M 0 0 Q -9 -8 0 -19 M 0 0 Q 9 8 0 19",
+    fill:"none",
+    stroke:color,
+    "stroke-width":5,
+    "stroke-linecap":"round"
+  });
+}
+
+function drawNucleus(parent, x, y, radius = 43) {
+  addShape(parent, "circle", {
+    cx:x,cy:y,r:radius,
+    fill:"url(#nucleusFill)",
+    stroke:"#aa8cff",
+    "stroke-width":2,
+    "stroke-dasharray": currentStage === 0 ? "5 3" : "none",
+    opacity:.9
+  });
+}
+
+function drawCellBody(parent, x, y, rx = 142, ry = 103) {
+  addShape(parent, "ellipse", {
+    cx:x,cy:y,rx,ry,
+    fill:"url(#cellFill)",
+    stroke:"#39caff",
+    "stroke-width":3
+  });
+  addShape(parent, "ellipse", {
+    cx:x-8,cy:y-8,rx:rx-9,ry:ry-9,
+    fill:"none",stroke:"#80e6ff","stroke-width":1,opacity:.3
+  });
+}
+
+function drawSpindle(parent, cx, cy, chromosomeX, chromosomeY) {
+  const poles = [
+    [cx - 110, cy],
+    [cx + 110, cy]
+  ];
+
+  poles.forEach(([px,py]) => {
+    addShape(parent, "circle", {
+      cx:px,cy:py,r:7,fill:"#35d6ff",filter:"url(#glow)"
+    });
+
+    const lineCount = currentStage === 2 ? 3 : 5;
+    for (let i=0; i<lineCount; i++) {
+      const offset = (i-(lineCount-1)/2)*11;
+      addShape(parent, "path", {
+        d:`M ${px} ${py} Q ${cx+offset} ${cy+offset*.3} ${chromosomeX+offset} ${chromosomeY}`,
+        stroke:"#4acbff",
+        "stroke-width":1.2,
+        opacity:.5,
+        fill:"none"
+      });
+    }
+  });
+}
+
+function drawCell() {
+  cellDrawing.replaceChildren();
+
+  if (currentStage === 3) {
+    // خليتان بنتان في الطور النهائي
+    drawCellBody(cellDrawing, 112, 128, 83, 83);
+    drawCellBody(cellDrawing, 288, 128, 83, 83);
+    drawNucleus(cellDrawing, 112, 128, 34);
+    drawNucleus(cellDrawing, 288, 128, 34);
+
+    [[101,119],[121,136],[107,140]].forEach(([x,y]) => drawChromosome(cellDrawing,x,y,.48));
+    [[277,119],[297,136],[283,140]].forEach(([x,y]) => drawChromosome(cellDrawing,x,y,.48));
+    return;
+  }
+
+  drawCellBody(cellDrawing, 200, 132, 150, 104);
+
+  if (currentStage === 0) {
+    drawNucleus(cellDrawing,200,132,53);
+    [[181,115],[211,119],[190,146],[218,146]].forEach(([x,y]) => {
+      drawChromosome(cellDrawing,x,y,.65);
+    });
+  }
+
+  if (currentStage === 1) {
+    drawSpindle(cellDrawing,200,132,200,132);
+    [[190,83],[210,105],[190,128],[210,151],[190,174]].forEach(([x,y]) => {
+      drawChromosome(cellDrawing,x,y,.55);
+    });
+  }
+
+  if (currentStage === 2) {
+    drawSpindle(cellDrawing,200,132,160,132);
+    [[145,85],[159,106],[145,128],[159,150],[145,171]].forEach(([x,y]) => {
+      drawChromatid(cellDrawing,x,y,-1,.75 > 0 ? "#b58cff" : "#b58cff");
+    });
+    [[255,85],[241,106],[255,128],[241,150],[255,171]].forEach(([x,y]) => {
+      drawChromatid(cellDrawing,x,y,1,"#63ddff");
+    });
+  }
+}
+
+function showStage(index) {
+  currentStage = (index + stages.length) % stages.length;
+  const stage = stages[currentStage];
+
+  stageTitle.textContent = `${currentStage + 1}. ${stage.name}`;
+  stageDescription.textContent = stage.description;
+  stageFact.textContent = stage.fact;
+  cellCaption.textContent = stage.caption;
+
+  stageButtons.forEach((button, i) => {
+    const active = i === currentStage;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  document.getElementById("previousStage").disabled = currentStage === 0;
+  document.getElementById("nextStage").disabled = currentStage === stages.length - 1;
+
+  drawCell();
+}
+
+stageButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    showStage(Number(button.dataset.stage));
+  });
+});
+
+document.getElementById("previousStage").addEventListener("click", () => {
+  if (currentStage > 0) showStage(currentStage - 1);
+});
+
+document.getElementById("nextStage").addEventListener("click", () => {
+  if (currentStage < stages.length - 1) showStage(currentStage + 1);
+});
+
+/* ==========================================
+   اختبار تفاعلي
+========================================== */
+
+const questions = [
+  {
+    question:"1. في أي طور تصطف الصبغيات عند المستوى الاستوائي؟",
+    options:["الطور التمهيدي","الطور الاستوائي","الطور الانفصالي","الطور النهائي"],
+    answer:1,
+    explanation:"تصطف الصبغيات عند المستوى الاستوائي في الطور الاستوائي."
+  },
+  {
+    question:"2. في أي طور تنفصل الكروماتيدات الشقيقة؟",
+    options:["الطور النهائي","الطور التمهيدي","الطور الانفصالي","الطور الاستوائي"],
+    answer:2,
+    explanation:"تنفصل الكروماتيدات الشقيقة في الطور الانفصالي."
+  },
+  {
+    question:"3. ماذا يحدث في الطور التمهيدي؟",
+    options:["تتكثف الصبغيات","تتشكل خليتان بنتان","تصطف الصبغيات عند الاستواء","تنفصل الكروماتيدات"],
+    answer:0,
+    explanation:"تتكثف الصبغيات وتصبح أكثر وضوحًا في الطور التمهيدي."
+  },
+  {
+    question:"4. ما النتيجة المعتادة للانقسام الخيطي المتساوي؟",
+    options:["أربع خلايا مختلفة","خلية واحدة فقط","خليتان بنتان متماثلتان وراثيًا عادةً","اختفاء المادة الوراثية"],
+    answer:2,
+    explanation:"ينتج عادةً عن الانقسام الخيطي خليتان بنتان تحملان المادة الوراثية نفسها."
+  },
+  {
+    question:"5. ما الحدث الذي يميز الطور النهائي؟",
+    options:["اصطفاف الصبغيات","تشكّل نواتين بنتين","تضاعف المادة الوراثية","بداية تكثف الصبغيات"],
+    answer:1,
+    explanation:"تتشكل نواتان بنتان في الطور النهائي."
+  },
+  {
+    question:"6. أي مرحلة تسبق الانقسام الخيطي وتُضاعف فيها المادة الوراثية؟",
+    options:["الطور الانفصالي","الطور النهائي","الطور الاستوائي","الطور البيني"],
+    answer:3,
+    explanation:"تتضاعف المادة الوراثية خلال الطور S من الطور البيني."
+  }
+];
+
+const quizQuestions = document.getElementById("quizQuestions");
+let answers = Array(questions.length).fill(null);
+let submitted = false;
+
+function renderQuiz() {
+  quizQuestions.replaceChildren();
+
+  questions.forEach((question, questionIndex) => {
+    const box = document.createElement("div");
+    box.className = "quiz-question";
+
+    const heading = document.createElement("h3");
+    heading.textContent = question.question;
+    box.appendChild(heading);
+
+    const options = document.createElement("div");
+    options.className = "options";
+
+    question.options.forEach((option, optionIndex) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "option";
+      button.textContent = option;
+      button.setAttribute("aria-pressed", String(answers[questionIndex] === optionIndex));
+
+      if (answers[questionIndex] === optionIndex) {
+        button.classList.add("selected");
+      }
+
+      button.addEventListener("click", () => {
+        if (submitted) return;
+        answers[questionIndex] = optionIndex;
+        renderQuiz();
+      });
+
+      options.appendChild(button);
+    });
+
+    box.appendChild(options);
+
+    const feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("aria-live", "polite");
+
+    if (submitted) {
+      const correct = answers[questionIndex] === question.answer;
+      feedback.textContent = (correct ? "✅ " : "❌ ") + question.explanation;
+      feedback.style.color = correct ? "var(--green)" : "var(--red)";
+
+      [...options.children].forEach((button, i) => {
+        button.disabled = true;
+        if (i === question.answer) button.classList.add("correct");
+        if (i === answers[questionIndex] && i !== question.answer) {
+          button.classList.add("wrong");
+        }
+      });
+    }
+
+    box.appendChild(feedback);
+    quizQuestions.appendChild(box);
+  });
+}
+
+document.getElementById("checkQuiz").addEventListener("click", () => {
+  if (submitted) return;
+
+  const unanswered = answers.filter(answer => answer === null).length;
+  if (unanswered > 0) {
+    document.getElementById("score").textContent =
+      `أجب عن جميع الأسئلة أولًا. بقي ${unanswered} سؤال/أسئلة.`;
+    return;
+  }
+
+  submitted = true;
+  const correctCount = questions.reduce((total, question, index) => {
+    return total + (answers[index] === question.answer ? 1 : 0);
+  }, 0);
+
+  renderQuiz();
+
+  document.getElementById("score").textContent =
+    `نتيجتك: ${correctCount} / ${questions.length}`;
+
+  document.getElementById("checkQuiz").disabled = true;
+});
+
+document.getElementById("resetQuiz").addEventListener("click", () => {
+  answers = Array(questions.length).fill(null);
+  submitted = false;
+  document.getElementById("score").textContent = "";
+  document.getElementById("checkQuiz").disabled = false;
+  renderQuiz();
+  document.getElementById("quiz").scrollIntoView({behavior:"smooth"});
+});
+
+/* ==========================================
+   المظهر الفاتح والداكن
+========================================== */
+
+const themeButton = document.getElementById("themeButton");
+
+themeButton.addEventListener("click", () => {
+  const isLight = document.body.classList.toggle("light");
+  themeButton.textContent = isLight ? "🌙" : "☀️";
+  themeButton.setAttribute(
+    "aria-label",
+    isLight ? "التبديل إلى المظهر الداكن" : "التبديل إلى المظهر الفاتح"
+  );
+});
+
+/* تشغيل الصفحة */
+showStage(0);
+renderQuiz();
+</script>
+</body>
+</html>
