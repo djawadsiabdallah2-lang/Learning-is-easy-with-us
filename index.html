@@ -1324,7 +1324,77 @@ footer strong{
         padding: 13px;
     }
 }
+
+
+/* 🧬 تنسيق درس الانقسام الخيطي */
+.mitosis-card {
+    grid-column: 1 / -1;
+    border-color: rgba(53, 214, 255, .3);
+}
+
+.mitosis-content {
+    padding: 18px;
+    border-top: 1px solid var(--border);
+    line-height: 2;
+}
+
+.mitosis-content[hidden] {
+    display: none;
+}
+
+.mitosis-content h3 {
+    color: var(--cyan);
+    margin-bottom: 12px;
+}
+
+.mitosis-stages,
+.mitosis-quiz {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.mitosis-stages button,
+.mitosis-quiz button {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.mitosis-stages button:hover,
+.mitosis-quiz button:hover {
+    border-color: var(--cyan);
+}
+
+.mitosis-explanation {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 12px;
+}
+
+#mitosisFeedback {
+    grid-column: 1 / -1;
+    font-weight: bold;
+}
+
+@media(max-width:600px) {
+    .mitosis-stages,
+    .mitosis-quiz {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+    
 </style>
+
+
+    
 
 <section class="card video-section" id="videos-section">
 
@@ -1651,9 +1721,83 @@ footer strong{
                         </div>
                     </div>
 
-                </div>
-            </div>
+<!-- 🧬 درس الانقسام الخيطي المتساوي -->
+<div class="video-card mitosis-card">
+    <div class="video-info">
+        <span class="video-number">🧬 درس تفاعلي</span>
+
+        <div class="video-title">
+            الانقسام الخيطي المتساوي
         </div>
+
+        <div class="video-description">
+            اكتشف مراحل الانقسام، وشاهد المحاكاة التفاعلية،
+            ثم اختبر معلوماتك.
+        </div>
+
+        <button
+            type="button"
+            class="main-button"
+            onclick="toggleMitosisLesson(this)"
+            style="margin-top:15px;width:100%;">
+
+            🔬 افتح الدرس التفاعلي
+        </button>
+        </div>
+
+    <div class="mitosis-content" hidden>
+        <h3>📖 تعريف الانقسام الخيطي المتساوي</h3>
+
+        <p>
+            هو انقسام نووي يوزع المادة الوراثية بالتساوي،
+            وينتج عنه عادةً نواتان بنتان تحملان المعلومة
+            الوراثية نفسها.
+        </p>
+
+        <div class="callout">
+            <strong>مراحل الانقسام:</strong>
+            التمهيدي ← الاستوائي ← الانفصالي ← النهائي.
+            يسبق هذه المراحل الطور البيني الذي تتضاعف خلاله
+            المادة الوراثية.
+        </div>
+
+        <div class="mitosis-stages">
+            <button type="button" onclick="showMitosisStage(0)">1. التمهيدي</button>
+            <button type="button" onclick="showMitosisStage(1)">2. الاستوائي</button>
+            <button type="button" onclick="showMitosisStage(2)">3. الانفصالي</button>
+            <button type="button" onclick="showMitosisStage(3)">4. النهائي</button>
+        </div>
+
+        <div class="mitosis-explanation" id="mitosisExplanation">
+            اضغط على إحدى المراحل لعرض شرحها.
+        </div>
+
+        <div class="callout">
+            🧠 **اختبر نفسك:** في أي مرحلة تنفصل الكروماتيدات الشقيقة؟
+        </div>
+
+        <div class="mitosis-quiz">
+            <button type="button" onclick="checkMitosisAnswer(this, false)">
+                الطور التمهيدي
+            </button>
+
+            <button type="button" onclick="checkMitosisAnswer(this, false)">
+                الطور الاستوائي
+            </button>
+
+            <button type="button" onclick="checkMitosisAnswer(this, true)">
+                الطور الانفصالي
+            </button>
+
+            <p id="mitosisFeedback" aria-live="polite"></p>
+
+            
+        </div>
+    </div>
+</div>
+
+
+                    
 
     </div>
 </section>
