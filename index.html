@@ -1759,281 +1759,189 @@ footer strong{
 
 
 
-<!-- 🧬 قسم دروس علوم الطبيعة والحياة -->
-<section id="biology-lessons" dir="rtl" style="
-  padding: 35px 20px;
-  margin: 25px auto;
-  max-width: 1000px;
-  font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
-  color: #ffffff;
-">
-  <style>
-    #biology-lessons * {
-      box-sizing: border-box;
-    }
+        <!-- =================================================
+             🧬 علوم الطبيعة والحياة
+        ================================================== -->
 
-    #biology-lessons .bio-card {
-      background: linear-gradient(135deg, #102c35, #10213b);
-      border: 1px solid rgba(53, 214, 255, 0.35);
-      border-radius: 22px;
-      padding: 25px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
-    }
+        <div class="subject-video-box">
 
-    #biology-lessons .bio-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 22px;
-    }
+            <button
+                class="subject-video-button"
+                onclick="toggleSubjectVideos(this)"
+            >
 
-    #biology-lessons .bio-icon {
-      width: 65px;
-      height: 65px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      border-radius: 18px;
-      background: rgba(32, 214, 154, 0.14);
-      font-size: 34px;
-    }
+                <div class="subject-icon">
+                    🧬
+                </div>
 
-    #biology-lessons .bio-title {
-      margin: 0 0 7px;
-      font-size: 23px;
-      color: #35d6ff;
-    }
+                <div class="subject-name">
 
-    #biology-lessons .bio-subtitle {
-      margin: 0;
-      color: #c2d5e8;
-      font-size: 14px;
-    }
+                    <strong>علوم الطبيعة والحياة</strong>
 
-    #biology-lessons .bio-toggle {
-      width: 100%;
-      padding: 14px 18px;
-      border: 1px solid rgba(53, 214, 255, 0.35);
-      border-radius: 14px;
-      background: rgba(25, 169, 255, 0.12);
-      color: white;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.25s;
-    }
+                    <span>
+                        4 دروس فيديو
+                    </span>
 
-    #biology-lessons .bio-toggle:hover {
-      background: rgba(25, 169, 255, 0.25);
-      transform: translateY(-2px);
-    }
+                </div>
 
-    #biology-lessons .bio-list {
-      display: none;
-      margin-top: 18px;
-      gap: 14px;
-    }
+                <div class="subject-arrow">
+                    ▼
+                </div>
 
-    #biology-lessons .bio-list.open {
-      display: grid;
-    }
+            </button>
 
-    #biology-lessons .bio-lesson {
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 15px;
-      background: rgba(4, 15, 29, 0.55);
-    }
 
-    #biology-lessons .bio-lesson-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px;
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 15px;
-    }
+            <div class="subject-video-content">
 
-    #biology-lessons .bio-number {
-      display: grid;
-      place-items: center;
-      width: 35px;
-      height: 35px;
-      flex-shrink: 0;
-      border-radius: 11px;
-      background: rgba(32, 214, 154, 0.16);
-      color: #20d69a;
-    }
+                <div class="video-grid">
 
-    #biology-lessons .bio-watch {
-      display: inline-block;
-      margin: 0 16px 16px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #19a9ff, #20d69a);
-      color: #061525;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-      transition: 0.2s;
-    }
 
-    #biology-lessons .bio-watch:hover {
-      filter: brightness(1.12);
-      transform: scale(1.02);
-    }
+                    <!-- علوم الطبيعة والحياة 1 -->
 
-    #biology-lessons .bio-count {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 5px 10px;
-      border-radius: 20px;
-      background: rgba(32, 214, 154, 0.12);
-      color: #20d69a;
-      font-size: 12px;
-    }
+                    <div class="video-card">
 
-    @media (max-width: 500px) {
-      #biology-lessons {
-        padding: 20px 12px;
-      }
+                        <div class="video-frame">
 
-      #biology-lessons .bio-card {
-        padding: 17px;
-      }
+                            <iframe
+                                src="https://www.youtube.com/embed/Z9XnpZaVOI0"
+                                title="علوم الطبيعة والحياة - الدرس 1"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
 
-      #biology-lessons .bio-title {
-        font-size: 19px;
-      }
-    }
-  </style>
+                        </div>
 
-  <div class="bio-card">
-    <div class="bio-header">
-      <div class="bio-icon">🧬</div>
-      <div>
-        <h2 class="bio-title">علوم الطبيعة والحياة</h2>
-        <p class="bio-subtitle">
-          اكتشف دروسك وراجعها بسهولة من مكان واحد 📚
-        </p>
-        <span class="bio-count">🎥 4 دروس متاحة</span>
-      </div>
-    </div>
+                        <div class="video-info">
 
-    <button
-      class="bio-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="bio-video-list"
-      onclick="
-        const list = document.getElementById('bio-video-list');
-        const isOpen = list.classList.toggle('open');
-        this.setAttribute('aria-expanded', String(isOpen));
-        this.innerHTML = isOpen
-          ? '✖ إخفاء الدروس'
-          : '📚 عرض جميع الدروس';
-      "
-    >
-      📚 عرض جميع الدروس
-    </button>
+                            <span class="video-number">
+                                🧬 الدرس 1
+                            </span>
 
-    <div class="bio-list" id="bio-video-list">
+                            <div class="video-title">
+                                علوم الطبيعة والحياة — الدرس 1
+                            </div>
 
-      <article class="bio-lesson">
-        <div class="bio-lesson-title">
-          <span class="bio-number">01</span>
-          <span>الدرس الأول</span>
+                            <div class="video-description">
+                                شرح درس علوم الطبيعة والحياة للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- علوم الطبيعة والحياة 2 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/P2uyQjNkzUc"
+                                title="علوم الطبيعة والحياة - الدرس 2"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                🧬 الدرس 2
+                            </span>
+
+                            <div class="video-title">
+                                علوم الطبيعة والحياة — الدرس 2
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس علوم الطبيعة والحياة للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- علوم الطبيعة والحياة 3 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/QAtbIlh5w7Q"
+                                title="علوم الطبيعة والحياة - الدرس 3"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                🧬 الدرس 3
+                            </span>
+
+                            <div class="video-title">
+                                علوم الطبيعة والحياة — الدرس 3
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس علوم الطبيعة والحياة للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- علوم الطبيعة والحياة 4 -->
+
+                    <div class="video-card">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube.com/embed/1kqVRJuSln8"
+                                title="علوم الطبيعة والحياة - الدرس 4"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        </div>
+
+                        <div class="video-info">
+
+                            <span class="video-number">
+                                🧬 الدرس 4
+                            </span>
+
+                            <div class="video-title">
+                                علوم الطبيعة والحياة — الدرس 4
+                            </div>
+
+                            <div class="video-description">
+                                شرح درس علوم الطبيعة والحياة للسنة الأولى ثانوي.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
         </div>
-        <a class="bio-watch"
-           href="https://youtu.be/Z9XnpZaVOI0"
-           target="_blank"
-           rel="noopener noreferrer">
-          ▶ مشاهدة الدرس
-        </a>
-      </article>
 
-      <article class="bio-lesson">
-        <div class="bio-lesson-title">
-          <span class="bio-number">02</span>
-          <span>الدرس الثاني</span>
-        </div>
-        <a class="bio-watch"
-           href="https://youtu.be/P2uyQjNkzUc"
-           target="_blank"
-           rel="noopener noreferrer">
-          ▶ مشاهدة الدرس
-        </a>
-      </article>
-
-      <article class="bio-lesson">
-        <div class="bio-lesson-title">
-          <span class="bio-number">03</span>
-          <span>الدرس الثالث</span>
-        </div>
-        <a class="bio-watch"
-           href="https://youtu.be/QAtbIlh5w7Q"
-           target="_blank"
-           rel="noopener noreferrer">
-          ▶ مشاهدة الدرس
-        </a>
-      </article>
-
-      <article class="bio-lesson">
-        <div class="bio-lesson-title">
-          <span class="bio-number">04</span>
-          <span>الدرس الرابع</span>
-        </div>
-        <a class="bio-watch"
-           href="https://youtu.be/1kqVRJuSln8"
-           target="_blank"
-           rel="noopener noreferrer">
-          ▶ مشاهدة الدرس
-        </a>
-      </article>
-
-    </div>
-  </div>
-</section>
-<!-- نهاية قسم علوم الطبيعة والحياة -->
-
-
-
-
-    
-</section>
-
-
-<script>
-
-/* =====================================================
-   فتح وإغلاق دروس المادة
-===================================================== */
-
-function toggleSubjectVideos(button){
-
-    const box = button.closest(".subject-video-box");
-
-    const allBoxes = document.querySelectorAll(".subject-video-box");
-
-    /* إغلاق المواد الأخرى */
-
-    allBoxes.forEach(item => {
-
-        if(item !== box){
-            item.classList.remove("open");
-        }
-
-    });
-
-    /* فتح / إغلاق المادة التي ضغط عليها */
-
-    box.classList.toggle("open");
-
-}
-
-</script>
 
 
 
