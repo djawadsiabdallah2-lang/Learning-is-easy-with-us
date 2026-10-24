@@ -902,6 +902,113 @@ footer strong{
         font-size:15px;
     }
 }
+
+
+/* =========================================
+   📚 تنسيق قسم الملخصات والأوراق
+   مدمج داخل index.html
+========================================= */
+#summaries-section {
+    direction: rtl;
+    display: block;
+    width: min(1100px, 94%);
+    margin: 35px auto;
+    padding: 30px;
+    box-sizing: border-box;
+    color: var(--text, #ffffff);
+    text-align: right;
+}
+#summaries-section .summaries-header {
+    display: block;
+    text-align: center;
+    margin-bottom: 28px;
+}
+#summaries-section .summaries-icon {
+    display: block;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+#summaries-section .summaries-header h2 {
+    color: var(--cyan, #35d6ff);
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 12px;
+}
+#summaries-section .summaries-header p {
+    font-size: 15px;
+    line-height: 1.9;
+    margin: 0;
+    color: var(--muted, #b9c9dc);
+}
+#summaries-section .summaries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+    gap: 20px;
+}
+#summaries-section .summary-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+    box-sizing: border-box;
+    background: var(--card, rgba(15,31,51,.82));
+    border: 1px solid var(--border, rgba(255,255,255,.12));
+    border-radius: 20px;
+    transition: transform .25s, border-color .25s;
+}
+#summaries-section .summary-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan, #35d6ff);
+}
+#summaries-section .summary-card-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 55px;
+    height: 55px;
+    font-size: 30px;
+    border-radius: 15px;
+    background: rgba(25,169,255,.14);
+}
+#summaries-section .summary-card-content { flex: 1; min-width: 0; }
+#summaries-section .summary-subject {
+    display: inline-block;
+    color: var(--green, #20d69a);
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+#summaries-section .summary-card h3 {
+    font-size: 20px;
+    margin: 0 0 12px;
+    color: var(--text, #ffffff);
+}
+#summaries-section .summary-card p {
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0 0 20px;
+    color: var(--muted, #b9c9dc);
+}
+#summaries-section .summary-open-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    background: var(--blue, #19a9ff);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: filter .2s;
+}
+#summaries-section .summary-open-button:hover { filter: brightness(1.15); }
+@media (max-width: 600px) {
+    #summaries-section { padding: 22px 16px; }
+    #summaries-section .summaries-header h2 { font-size: 24px; }
+    #summaries-section .summary-card { padding: 18px; gap: 12px; }
+}
+
 </style>
 
 </head>
